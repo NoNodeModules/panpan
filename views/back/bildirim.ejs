@@ -1,0 +1,47 @@
+<% layout("layout") %>
+
+    <section class="panel col-md-12">
+        <header class="panel-heading">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+            </div>
+
+            <h2 class="panel-title">SİSTEM BİLDİRİMİ EKLE</h2>
+        </header>
+        <div class="panel-body">
+            <form action="/admin/bildirim" method="POST">
+                <div class="form-group col-md-12">
+                    <label>BİLDİRİM BAŞLIK</label>
+                    <input type="text" name="title" class="form-control" placeholder="Bildirim bağlığı">
+                </div>
+                <div class="form-group col-md-12">
+                    <label>BİLDİRİM AÇIKLAMA (Varsa)</label>
+                    <textarea type="text" name="desc" class="form-control" placeholder="Bildirim açıklaması"
+                        rows="4"></textarea>
+                </div>
+                <div class="form-group col-md-4">
+                    <select data-plugin-selectTwo name="user" class="form-control populate">
+                        <optgroup label="GENEL">
+                            <% user.forEach(element => { %>
+                                <option value="*">TÜM ÜYELER</option>
+                                <option value="#">TÜM YAZARLAR</option>
+                            <% }) %>
+                        </optgroup>
+                        <optgroup label="ÖZEL">
+                            <% user.forEach(element => { %>
+                                <option value="<%= element._id %>"><%= element.item.name.toUpperCase() %> <%= element.item.surname.toUpperCase() %></option>
+                            <% }) %>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group col-md-8">
+                    <input type="text" class="form-control" name="url" placeholder="Bildirim URL (varsa)">
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary pull-right">Ekle</button>
+                </div>
+            </form>
+            <div class="clearfix"></div>
+        </div>
+    </section>

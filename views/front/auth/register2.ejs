@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        window.METRO_LOCALE = "en-US";
+    </script>
+    <meta name="metro4:locale" content="tr-TR">
+    <link href="../../../front/images/favicon.png" rel="icon" type="image/png">
+    <title>PANİPAL KAYIT OL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="PANİPAL  - KAYIT OL">
+    <link rel="stylesheet" href="../../../front/scss/icons.css">
+    <link rel="stylesheet" href="../../../front/css/uikit.css">
+    <link rel="stylesheet" href="../../../front/css/style.css">
+    <link rel="stylesheet" href="../../../front/css/icons.css">
+    <link rel="stylesheet" href="../../../front/css/tailwind.css">
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro.min.css">
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-colors.min.css">
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-rtl.min.css">
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-icons.min.css">
+    <script>
+        var locales = Metro.utils.getLocales();
+        console.log(locales);
+    </script>
+    <style>
+        input,
+        .bootstrap-select.btn-group button {
+            background-color: #f3f4f6 !important;
+            height: 44px !important;
+            box-shadow: none !important;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-100">
+
+
+    <div id="wrapper" class="flex flex-col justify-between h-screen">
+
+        <!-- header-->
+        <!-- <div class="bg-white py-4 shadow dark:bg-gray-800">
+            <div class="max-w-6xl mx-auto">
+
+
+                <div class="flex items-center lg:justify-between justify-around">
+
+                    <a href="/">
+                        <img src="../../../newpan.png" alt="" class="w-32">
+                    </a>
+
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Content-->
+        <div>
+            <div class="lg:p-12 max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
+                <form class="lg:p-10 p-6 space-y-3 relative bg-white shadow-xl rounded-md" action="/users/register" method="POST">
+                        <a href="/users/login" class="uk-link text-primary">Zaten bir hesabınız var mı ? <b>Giriş Yap</b></a>
+                    <h1 class="lg:text-2xl text-xl font-semibold mb-6"> Kayıt Ol </h1>
+
+                    <div class="grid lg:grid-cols-2 gap-3">
+                        <div>
+                            <label class="mb-0"> Adınız </label>
+                            <input type="text" name="name" placeholder="Adınız" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full">
+                        </div>
+                        <!-- <div>
+                            <label class="mb-0"> Soyadınız </label>
+                            <input type="text" name="surname" placeholder="Soyadınız" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full">
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label>Doğum Tarihiniz</label>
+                        <input name="dt" data-role="datepicker" data-locale="tr-TR">
+                    </div>
+                    <div class="uk-form-group">
+                        <label for="mb-0"> Cinsiyetiniz</label>
+                        <div class="uk-position-relative">
+                            <select name="cinsiyet" class="selectpicker uk-input bg-secondary">
+                                <option>Erkek</option>
+                                <option>Kadın</option>
+                                <option>Belirtmek istemiyorum</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="mb-0"> Email Adresiniz </label>
+                        <input type="email" name="username" placeholder="info@ornek.com" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full">
+                    </div>
+                    <div>
+                        <label class="mb-0"> Şifre </label>
+                        <input type="password" name="password" placeholder="******" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full">
+                    </div>
+                    <div class="grid lg:grid-cols-2 gap-3">
+                        <div>
+                            <label class="mb-0"> Telefon: (opsiyonel)  </label>
+                            <input type="text" placeholder="+____ ___ __ __" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full">
+                        </div>
+                    </div>
+
+                    <div class="checkbox">
+                        <input type="checkbox" id="chekcbox1" checked="">
+                        <label for="chekcbox1"><span class="checkbox-icon"></span> Kabul ediyorum. <a href="#" target="_blank" class="uk-text-bold uk-text-small uk-link-reset"> Üyelik sözleşmesi. </a>
+                            </label>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="bg-blue-600 font-semibold p-2 mt-5 rounded-md text-center text-white w-full">
+                                Kayıt Ol</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+
+        <!-- <div class="lg:mb-5 py-3 uk-link-reset">
+            <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+
+                <p class="capitalize"> © copyright 2021 by Panipal</p>
+            </div>
+        </div> -->
+
+    </div>
+
+
+    <!-- Javascript
+    ================================================== -->
+    <script src="../../../front/js/jquery-3.3.1.min.js"></script>
+    <script src="../../../front/js/uikit.js"></script>
+    <script src="../../../front/js/simplebar.js"></script>
+    <script src="../../../front/js/custom.js"></script>
+    <script src="../../../front/js/bootstrap-select.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <script src="../../../front/metro.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<% layout("layout") %>
+    <%- include ./part/headerflex.ejs %>
+
+        <div class="main_content">
+            <div class="container">
+                <nav class="cd-secondary-nav pl-2 is_ligh -mb-0.5 border-transparent"
+                    style="display: flex; margin-top: -10px;">
+                    <ul>
+                        <li onclick="sozlukAc()" style="padding-left: 8vw;"><a>Genel</a></li>
+                        <li onclick="medyaAc()" style="padding-left: 25vw;"><a>Sistem </a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- <hr style="margin-top: -15px; border: 1px solid darkgray;"> -->
+
+            <div class="mcontainer" style="margin-top: -20px;">
+
+                <div id="sozluk" style="padding-left:10px; padding-right:10px;">
+                    <% bildirim.forEach(element => { %>
+                        <% if (element.type == 0) { %>
+                            <div style="display: flex; flex-direction: row; padding-top: 4px;">
+                                <div
+                                    style="flex:1; align-items: center; justify-content: center; padding-left: 5vw; padding-top: 3px;">
+                                    <ion-icon class="text-2xl" name="heart-outline"></ion-icon>
+                                </div>
+                                <div style="flex:12">
+                                    <!-- <img src="https://picsum.photos/200"
+                                        style="border-radius: 50px; margin-bottom: 6px; height: 40px;"> -->
+                                    <img src="<%= element.user.photo %>"
+                                        style="border-radius: 50px; margin-bottom: 6px; height: 40px; width: 40px;">
+                                    <p style="margin-top: -11px;"> <a href=""><b><%= element.user.item.name %> </b> yorumunuzu beğendi. </a> </p>
+                                    <p style="line-height: 1.2;"> <small> 
+                                        <%= element.yorum.yorum %>   
+                                    </small> </p>
+                                </div>
+                            </div>
+                            <hr>
+                        <% }else if(element.type == 1){ %>
+                            <div style="display: flex; flex-direction: row; padding-top: 4px;">
+                                <div
+                                    style="flex:1; align-items: center; justify-content: center; padding-left: 5vw; padding-top: 3px;">
+                                    <ion-icon class="text-2xl" name="chatbubble-ellipses-outline"></ion-icon>
+                                </div>
+                                <div style="flex:12">
+                                    <img src="<%= element.user.photo %>"
+                                        style="border-radius: 50px; margin-bottom: 6px; height: 40px; width: 40px;">
+                                    <p style="margin-top: -11px;"> <a href=""><b><%= element.user.item.name %> </b> "<i><%= element.sozluk.title %></i>" başlıklı konunuza yorum ekledi. </a> </p>
+                                    <p style="line-height: 1.2;"> <small> 
+                                        <%= element.title %>
+                                    </small> 
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        <% } %> 
+                    <% }) %>
+
+                    <!-- <div style="display: flex; flex-direction: row; padding-top: 4px;">
+                        <div
+                            style="flex:1; align-items: center; justify-content: center; padding-left: 5vw; padding-top: 3px;">
+                            <ion-icon name="chatbubble-ellipses-outline" class="text-2xl"></ion-icon>
+                        </div>
+                        <div style="flex:12">
+                            <img src="https://picsum.photos/200"
+                                style="border-radius: 50px; margin-bottom: 6px; height: 40px;">
+                            <p style="margin-top: -11px;">
+                                <a href="">
+                                    <b>Abdullah </b> size mesaj gönderdi.
+                                </a>
+                            </p>
+                            <p style="line-height: 1.2;"> 
+                                <small>
+                                    Merhaba nasılsınız ?
+                                </small> 
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="display: flex; flex-direction: row; padding-top: 4px;">
+                        <div
+                            style="flex:1; align-items: center; justify-content: center; padding-left: 5vw; padding-top: 3px;">
+                            <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
+                        </div>
+                        <div style="flex:12">
+                            <img src="https://picsum.photos/200"
+                                style="border-radius: 50px; margin-bottom: 6px; height: 40px;">
+                            <p style="margin-top: -11px;"> <a href=""><b>Ahmet </b> ağınıza katıldı. </a> </p>
+                        </div>
+                    </div> -->
+                </div>
+                <div id="medya" style="display: none; padding-left:10px; padding-right:10px;">
+                    <div style="display: flex; flex-direction: row; padding-top: 4px;">
+                        <div
+                            style="flex:1; align-items: center; justify-content: center; padding-left: 5vw; padding-top: 3px;">
+                            <ion-icon name="information-circle-outline" class="text-2xl"></ion-icon>
+                        </div>
+                        <div style="flex:12">
+                            <img src="../../panpan.png"
+                                style="border-radius: 50px; margin-bottom: 6px; height: 40px;">
+                            <p style="margin-top: -11px;">
+                                <a href="">
+                                    <b>Panipal </b> açıldı.
+                                </a>
+                            </p>
+                            <p style="line-height: 1.2;"> 
+                                <small>
+                                    Panipal sizlerle buluşmaya hazır.
+                                </small> 
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: row; padding-top: 4px;">
+                        <div
+                            style="flex:1; align-items: center; justify-content: center; padding-left: 5vw; padding-top: 3px;">
+                            <ion-icon name="information-circle-outline" class="text-2xl"></ion-icon>
+                        </div>
+                        <div style="flex:12">
+                            <img src="../../panpan.png"
+                                style="border-radius: 50px; margin-bottom: 6px; height: 40px;">
+                            <p style="margin-top: -11px;">
+                                <a href="">
+                                    <b>Panipal </b> açıldı.
+                                </a>
+                            </p>
+                            <p style="line-height: 1.2;"> 
+                                <small>
+                                    Panipal sizlerle buluşmaya hazır.
+                                </small> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        <footer>
+            <% if (user) { %>
+                <div style="flex: 2; align-items: center; justify-content: center;">
+                    <a href="/profil"><img src="<%= user.photo %>"
+                            style="height: 33px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; border-radius: 20px;">
+                    </a>
+                </div>
+                <% }else{ %>
+                    <div style="flex: 2; align-items: center; justify-content: center;">
+                        <a href="/users/login">
+                            <ion-icon name="person-outline" style="color: gray;" class="text-3xl"></ion-icon>
+                        </a>
+                    </div>
+                    <% } %>
+                        <div style="flex: 2; align-items: center; justify-content: center;">
+                            <a href="/medya">
+                                <ion-icon name="camera-outline" style="color: gray;" class="text-4xl"></ion-icon>
+                            </a>
+                        </div>
+                        <% if (user) { %>
+                            <% if (user.type==1 && title==1) { %>
+                                <div style="flex: 2; align-items: center; justify-content: center;"
+                                    uk-toggle="target: #create-post-modal">
+                                    <img src="../../../paylas.png"
+                                        style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                                </div>
+                                <% }else{ %>
+                                    <div style="flex: 2; align-items: center; justify-content: center;"
+                                        uk-toggle="target: #create-post-modal">
+                                        <img src="../../../paylas.png"
+                                            style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                                    </div>
+                                    <% } %>
+                                        <% }else{ %>
+
+                                            <% } %>
+                                                <div style="flex: 2; align-items: center; justify-content: center;">
+                                                    <a href="/bildirim">
+                                                        <ion-icon name="notifications-outline" style="color: gray;"
+                                                            class="text-4xl"></ion-icon>
+                                                    </a>
+                                                </div>
+                                                <div style="flex: 2; align-items: center; justify-content: center;">
+                                                    <a href="/mesaj">
+                                                        <ion-icon name="chatbubble-outline" style="color: gray;"
+                                                            class="text-4xl"></ion-icon>
+                                                    </a>
+                                                </div>
+        </footer>
+
+        <script>
+            function sozlukAc() {
+                document.getElementById("sozluk").style.display = "block"
+                document.getElementById("medya").style.display = "none"
+            }
+
+            function medyaAc() {
+                document.getElementById("sozluk").style.display = "none"
+                document.getElementById("medya").style.display = "block"
+            }
+        </script>

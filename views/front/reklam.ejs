@@ -1,0 +1,220 @@
+<% layout("layout") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="../../../cropp/dist/rcrop.min.js"></script>
+    <link href="../../../cropp/dist/rcrop.min.css" media="screen" rel="stylesheet" type="text/css">
+
+
+    
+    <header
+        style="display: flex; height: 50px; padding-left: 7vw; padding-right: 7vw; padding-top: 10px; border-radius: 20px;">
+        <% if (user) { %>
+            <div style="flex: 2;">
+                <a href="/setting">
+                    <ion-icon name="settings-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon>
+                </a>
+            </div>
+            <% }else{ %>
+                <div style="flex: 2;">
+                    <a href="/users/login">
+                        <ion-icon name="settings-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon>
+                    </a>
+                </div>
+                <% } %>
+                    <div style="flex: 6;">
+                        <!-- <a href="/"><img src="../../../newpan.png" style="height: 34px; width: auto; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto"></a> -->
+                    </div>
+                    <div style="flex: 2;">
+                        <ion-icon name="arrow-forward-outline" style=" text-align: right; float: right;"
+                            class="text-4xl"></ion-icon>
+                    </div>
+    </header>
+
+    <style>
+        .slidecontainer {
+            width: 90%;
+            margin-left: 5vw;
+            margin-right: 5vw;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+    </style>
+    <div class="main_content" id="app">
+        <div class="container">
+            <h2 class="text-2xl font-semibold text-center" style="margin-top: 20px;"> Reklam Ayarları</h2>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Reklam Görseli</label>
+                <input type="file" class="uk-input" placeholder="ornek">
+
+            </span>
+            <hr>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Reklam Metni</label>
+                <input type="text" class="uk-input" placeholder="ornek">
+            </span>
+            <hr>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Reklam Açıklaması</label>
+                <input type="text" class="uk-input" placeholder="ornek">
+            </span>
+            <hr>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Reklam URL'i</label>
+                <input type="text" class="uk-input" placeholder="ornek">
+            </span>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Reklam Butonu</label>
+                <input type="text" class="uk-input" placeholder="Orn : Satın Al">
+            </span>
+            <!-- <hr style="margin-top: 22px; border: 2px solid darkgray;"> -->
+            <span class="badge">
+                <label style="padding-top: 10px;">
+                    <p style="padding-left: 20px;">Süre: <span id="demo"></span> gün</p>
+                </label>
+                <div class="slidecontainer">
+                    <input style="padding-left: 20px;" type="range" min="1" max="100" value="50" class="slider"
+                        id="myRange">
+                </div>
+            </span>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Bölüm seçiniz</label>
+                <select class="uk-input">
+                    <option value="">Medya</option>
+                    <option value="">Sözlük</option>
+                </select>
+            </span>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Tag seçiniz</label>
+                <select class="uk-input">
+                    <option value="">Gündem</option>
+                    <option value="">Siyaset</option>
+                </select>
+            </span>
+
+
+
+
+        </div>
+    </div>
+
+    <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+
+        slider.oninput = function () {
+            output.innerHTML = this.value;
+        }
+    </script>
+
+    <% include part/footerflex.ejs %>
+
+
+
+        <!-- <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <ion-icon name="bar-chart-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+                        
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <ion-icon name="cash-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <ion-icon name="flame-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <ion-icon name="globe-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <ion-icon name="rocket-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <ion-icon name="storefront-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <ion-icon name="gift-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <ion-icon name="game-controller-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <ion-icon name="ribbon-outline" class="text-6xl" style="color: cadetblue;"></ion-icon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+        </table> -->

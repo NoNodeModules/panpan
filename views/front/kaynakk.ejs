@@ -1,0 +1,108 @@
+<% layout("layout") %>
+<header style="display: flex; height: 92px; padding-left: 7vw; padding-right: 7vw; padding-top: 10px; border-radius: 20px;">
+    <% if (user) { %>
+        <div style="flex: 2;">
+            <a href="/setting"><ion-icon name="chevron-back-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon></a>
+        </div>
+    <% }else{ %>
+        <div style="flex: 2;">
+            <a href="/users/login"><ion-icon name="chevron-back-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon></a>
+        </div>
+    <% } %> 
+    <div style="flex: 15;">
+        <h3 class="leading-6" style="margin-top: 0px; font-size: 15pt; margin-left: -1vw; margin-right: -3vw; color: gray;" class="text-lg font-semibold">
+            sen de kendi çapında bir süper kahramansın <br> fikret. yirmi yıldır aynı kadını sevip günde 
+        </h3> 
+    </div>
+    <div style="flex: 2;">
+        <!-- <ion-icon name="search-outline" href="/arama" style="color: gray; float: right;" class="text-3xl" uk-toggle="target: #wrapper ; cls: show-searchbox"></ion-icon> -->
+    </div>
+</header>
+
+    <br>
+    <div class="main_content">
+        <div class="mcontainer">
+            <div class="lg:flex lg:space-y-10">
+                <div class="lg:w-3/4 lg:px-20 space-y-12">
+                    <div class="flex flex-1 items-center space-x-4" style="z-index: 99999; background-color: white;">
+
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <div class=" py-4 space-y-4 dark:border-" style="width: 100%;">
+                                <div style="display: flex; flex-direction: row; width: 100%;">
+                                    <div style="flex:2">
+                                        <a href=""><img src="https://res.cloudinary.com/panipal/image/upload/v1616601329/jzvok0bsthjh13h03woh.gif" style="border-radius: 75px; height: 45px; width: 45px; margin-left: -8px;"></a>
+                                                
+                                    </div>
+                                    <div style="flex:12; margin-left: -8px;">
+                                        <span style="margin-top: 20px;"><b>Abdullah</b></span><br>
+                                        <span style="margin-top: 20px;"><b><small>12 dakika önce</small></b></span>
+                                    </div>
+                                    <div style="flex:4">
+                                        
+                                        <h3 class="text-md font-semibold">
+                                        <span style="
+                                            text-transform: lowercase; 
+                                            display: inline-block;
+                                            text-align: center;
+                                            border-radius: 100px;
+                                            padding: 5px;
+                                            text-transform: capitalize;
+                                            background-color: #FFCDD2;
+                                            border: 1px solid #C62828;
+                                            color: #B71C1C;
+                                            text-decoration: none;">KATIL</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div style="width: 100%;">
+                                        <br>
+                                        <p class="leading-6" id=""
+                                            style="font-size: 15pt; margin-left: -1vw; margin-right: -3vw; color: deepskyblue;">
+                                            https://www.wikipedia.com/asdasdasdasdasd
+                                        </p>
+                                        <hr style="margin-top: 4px;">
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <% if (user) { %>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/profil"><img src="<%= user.photo %>" style="height: 33px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; border-radius: 20px;">            </a>
+            </div>
+        <% }else{ %>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/users/login"><ion-icon name="person-outline" style="color: gray;" class="text-3xl"></ion-icon></a>
+            </div>
+        <% } %> 
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/medya"><ion-icon name="camera-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+        <% if (user) { %>
+            <% if (user.type == 1 && title == 1) { %>
+                <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                    <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            <% }else{ %>
+                <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                    <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            <% } %> 
+        <% }else{ %>
+    
+        <% } %> 
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/bildirim"><ion-icon name="notifications-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/mesaj"><ion-icon name="chatbubble-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+    </footer>

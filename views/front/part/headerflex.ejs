@@ -1,0 +1,28 @@
+
+<header style="display: flex; height: 50px; padding-left: 7vw; padding-right: 7vw; padding-top: 10px; border-radius: 20px;">
+    <% if (user) { %>
+        <div style="flex: 2;">
+            <a href="/setting"><ion-icon name="settings-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon></a>
+        </div>
+    <% }else{ %>
+        <div style="flex: 2;">
+            <a href="/users/login"><ion-icon name="person-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon></a>
+        </div>
+    <% } %> 
+    <div style="flex: 6;">
+        <a href="/"><img src="../../../newpan.png" style="height: 34px; width: auto; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto"></a>
+    </div>
+    <div style="flex: 2;">
+        <a href="/arama">
+            <ion-icon name="search-outline" style="color: gray; float: right;" class="text-3xl" uk-toggle="target: #wrapper ; cls: show-searchbox"></ion-icon>
+        </a>
+    </div>
+</header>
+
+<!-- <div class="header_search" style="z-index: 999999999999999999;">
+    <input value="" type="text" class="form-control" placeholder="Konu ara" autocomplete="off">
+    <div @click="acKapa()" class="start-chat header-search-icon" id="gizle"
+        uk-toggle="target: #wrapper ; cls: show-searchbox">
+    </div>
+    <i class="uil-search-alt"></i>
+</div> -->

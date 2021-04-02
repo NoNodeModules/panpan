@@ -1,0 +1,77 @@
+<div class="lg:flex lg:mt-8 mt-4 lg:space-x-8">
+    <div class="lg:w-12/12 space-y-6">
+        <ul class="space-y-6">
+            <% sozluk.forEach(element => { %>
+                <li style="margin-top: 4px;">
+                    <a href="/single/<%= element._id %>">
+                        <div class="flex items-start pl-3 space-x-4">
+                            <img src="../../../front/images/avatars/avatar-2.jpg" style="width: 40px; height: 40px;" class="rounded-full">
+                            <div class="flex-1">
+                                <!-- <h3 class="text-lg font-semibold line-clamp-1"> -->
+                                <h3 class="text-lg font-semibold">
+                                    <%= element.title %>
+                                </h3>
+                                <p class="text-sm text-gray-400 mb-2"> Yazar: <span data-href="%40tag-dev.html">Abdullah Bektaş</span> |
+                                    <%= moment(element.createdAt,"ddd MMM DD YYYY HH:mm:ss GMT Z'").fromNow(true) %> önce </span>
+                                </p>
+                                <div class="row" style="margin-top: -9px; margin-left: 1px;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="share-social-outline"></ion-icon>
+                                                    <span class="text-sm">22</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon style="padding-left: 20vw;" name="heart-outline"></ion-icon>
+                                                    <span class="text-sm">22</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon style="padding-left: 20vw;" name="chatbubble-ellipses-outline"></ion-icon>
+                                                    <span class="text-sm"><%= element.comment.length %>11 </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </div>                                        
+                        </div>
+                        </div>
+                        
+                    </a>
+                </li>
+                <hr style="margin-top: -0px;">
+                <% }) %>
+        </ul>
+    </div>
+    <!-- <div class="lg:w-5/12 space-y-6">
+      
+        <div class="widget">
+            <h4 class="text-2xl mb-3 font-semibold"> Hakkında </h4>
+            <ul class="text-gray-600 space-y-4">
+                <li class="flex items-center space-x-2"> 
+                    <ion-icon name="home-sharp" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                    <strong> İstanbul'da bir yer . .   </strong>
+                </li>
+                <li class="flex items-center space-x-2"> 
+                    <ion-icon name="globe" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                    <strong> www.ornek.com  </strong>
+                </li>
+                <li class="flex items-center space-x-2"> 
+                    <ion-icon name="logo-instagram" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                    <strong> @ornekkisi  </strong>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <ion-icon name="logo-facebook" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                    <strong> <a href="https://google.com">Abdullah Bektaş</a> </strong>
+                </li>   
+                <li class="flex items-center space-x-2">
+                <ion-icon name="logo-twitter" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                    <strong> <a href="https://google.com">Abdullah Bektaş</a> </strong>
+                </li>   
+            </ul></div>
+        </div> -->
+</div>

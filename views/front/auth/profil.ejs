@@ -1,0 +1,420 @@
+<% layout("../layout") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-core/2.11.3/cloudinary-core.min.js" integrity="sha512-JlOhEgkriqAqb9bcQ3ILIQZFjpr7kJHKU9vudBHBulgfc1IgtUtMCK5dX3OyWRFpa1hkz8M4EiuY0ut5vMgAVg==" crossorigin="anonymous"></script>
+   
+<style>
+	img{
+		max-width:180px;
+	}
+	input[type=file]{
+		padding:10px;
+		background:#2d2d2d;
+	}
+</style>
+<header style="display: flex; height: 50px; padding-left: 7vw; padding-right: 7vw; padding-top: 10px; border-radius: 20px;">
+    <% if (user) { %>
+        <div style="flex: 2;">
+            <a href="/"><ion-icon name="home-outline" style="color: gray; float: left;"  class="text-3xl"></ion-icon></a>
+        </div>
+    <% }else{ %>
+        <div style="flex: 2;">
+            <a href="/users/login"><ion-icon name="person-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon></a>
+        </div>
+    <% } %> 
+    <div style="flex: 6;">
+        <a href="/"><img src="../../../newpan.png" style="height: 34px; width: auto; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto"></a>
+    </div>
+    <div style="flex: 2;">
+        <ion-icon name="search-outline" style="color: gray; float: right;" class="text-3xl" uk-toggle="target: #wrapper ; cls: show-searchbox"></ion-icon>
+    </div>
+</header>
+    
+    <div class="main_content">
+        <div class="mcontainer">
+            <div class="bg-white rounded-2xl -mt-4"> 
+                <div class="profiles_content" style="padding-top: 20px; padding-left: 10px;">
+                    <div style="display: flex; flex-direction: row;">
+                        <div style="flex: 8;">
+                            <div class="profile_avatar">
+                                <div class="profile_avatar_holder image-upload">
+                                    <label for="file-input">
+
+                                    <% if (user) { %>
+                                        <% if (user.photo == "") { %>
+                                            <img id="blah" src="https://via.placeholder.com/100" style="border-radius: 75px; height: 75px; width: 75px; max-height: 75px;
+                                            max-width: 75px; object-fit: cover;">
+                                        <% }else{ %>
+                                            <img id="blah" src="<%= user.photo %>" style="border-radius: 75px; height: 75px; width: 75px; max-height: 75px;
+                                            max-width: 75px; object-fit: cover;">
+                                        <% } %> 
+                                    <% }else{ %>
+                                        <img id="blah" src="https://via.placeholder.com/100" style="border-radius: 75px; height: 75px; width: 75px; max-height: 75px;
+                                        max-width: 75px; object-fit: cover;">
+                                    <% } %> 
+                                    </label>
+                                </div>
+                                <input id="file-input" type='file' onchange="readURL(this);" style="display: none;"/>
+                                <div class="user_status status_online"></div>
+                                <div class="icon_change_photo" hidden>
+                                    <ion-icon name="camera" class="text-xl"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex:4">
+            <a href="/setting"><ion-icon name="settings-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon></a>
+
+                            <h3 class="text-lg font-semibold" style=" text-align: right;"> 
+                                <span style="text-transform: lowercase; display: inline-block;
+                                    text-align: center;
+                                    margin: 5px;
+                                    border-radius: 100px;
+                                    padding: 5px;
+                                    text-transform: capitalize;
+                                    background-color: #E3F2FD;
+                                    border: 1px solid #0091EA;
+                                    color: #0D47A1;
+                                    text-decoration: none;"> <a href="/hesap">Profili Düzenle</a> 
+                                </span> 
+                            </h3>
+                        </div>
+                    </div>                    
+                    <% if (user) { %>
+                        <%= user.item.name %>
+                    <% }else{ %>
+                    
+                    <% } %> 
+                    
+                    <br>
+                    <small>233 Abone</small><br>
+                    <%= user.bio %>  <br>
+                    <span style="float: right; text-align: right;"><ion-icon name="caret-down-outline" class="text-2xl"></ion-icon></span>
+                    <br>
+                    <i class="fa fa-twitter"></i> : <%= user.social.twitter %> <br>
+                    <i class="fa fa-facebook"></i> : <%= user.social.facebook %> <br>
+                    <i class="fa fa-linkedin"></i> : <%= user.social.linkedin %> 
+                   
+                </div>
+                <div class="flex justify-between lg:border-t flex-col-reverse lg:flex-row" style="padding-top: 10px;">
+                    <nav class="cd-secondary-nav pl-2 is_ligh -mb-0.5 border-transparent" style="display: flex;">
+                        <ul>
+                            <li @click="baglac()"><a>Raf</a></li>
+                            <li style="padding-left: 14vw;" @click="yorac()"><a>Yorumlar </a></li>
+                            <li style="padding-left: 14vw;" @click="begac()"><a>Beğeniler </a></li>
+                            <li style="padding-left: 14vw;" @click="medac()"><a>Medya</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+
+            <div class="lg:flex lg:mt-8 mt-4 lg:space-x-8">
+                <div class="lg:w-12/12 space-y-6" v-if="baglanti == true">
+                    <ul class="space-y-6">
+                        <% sozluk.forEach(element => { %>
+                            <li style="margin-top: 4px;">
+                                <a href="/single/<%= element._id %>">
+                                    <div class="flex items-start pl-3 space-x-4">
+                                        <div class="flex-1">
+                                            <!-- <h3 class="text-lg font-semibold line-clamp-1"> -->
+                                            <h3 class="text-lg font-semibold">
+                                                <%= element.title %>
+                                            </h3>
+                                            <p class="text-sm text-gray-400 mb-2"> Yazar: <span data-href="%40tag-dev.html">Abdullah Bektaş</span> |
+                                                <%= moment(element.createdAt,"ddd MMM DD YYYY HH:mm:ss GMT Z'").fromNow(true) %> önce </span>
+                                            </p>
+                                            <div class="row" style="margin-top: -9px; margin-left: 1px;">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="flex items-center">
+                                                                <ion-icon name="logo-facebook"></ion-icon>
+                                                                <span class="text-sm"></span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="flex items-center">
+                                                                <ion-icon style="padding-left: 16vw;" name="logo-twitter"></ion-icon>
+                                                                <span class="text-sm"></span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="flex items-center">
+                                                                <ion-icon style="padding-left: 16vw;" name="logo-whatsapp"></ion-icon>
+                                                                <span class="text-sm"></span>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="flex items-center">
+                                                                <ion-icon style="padding-left: 16vw;" name="chatbubble-ellipses-outline"></ion-icon>
+                                                                <span class="text-sm"><%= element.comment.length %></span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>                                       
+                                    </div>
+                                    </div>
+                                    
+                                </a>
+                            </li>
+                            <hr style="margin-top: -0px;">
+                            <% }) %>
+                    </ul>
+                </div>
+                <div class="lg:w-12/12 space-y-6" v-if="yorumm == true" style="margin-left: 11px;">
+                    <% yorum.forEach(element=> { %>
+                        <div class="flex">
+                            <div>
+                                <h3 class="text-lg font-semibold">
+                                    <%= element.konu.title %> 
+                                </h3>
+                                <p style="font-size: 15pt;">
+                                    <%= element.yorum %>
+                                </p>
+                                <div class="row" style="margin-left: 1vw;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="logo-facebook" class="text-2xl"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="logo-whatsapp" style="padding-left: 9vw;" class="text-2xl"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="logo-twitter" style="padding-left: 9vw;" class="text-2xl"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon style="padding-left: 9vw;" class="text-2xl"
+                                                        name="heart-outline"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon style="padding-left: 9vw;" class="text-2xl" name="chatbubble-ellipses-outline"></ion-icon>
+
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <b>
+                                                    <ion-icon class="text-2xl" style="color:#03A9F4; font-weight:bolder; padding-left: 9vw;" name="checkmark-outline"></ion-icon>
+
+                                                    </b>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon class="text-2xl" style="padding-left: 9vw;" name="ellipsis-vertical"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <hr style="margin-top: 4px;">
+
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <div class="lg:w-12/12 space-y-6" v-if="begenn == true" style="margin-left: 11px;">
+                    <% begen.forEach(element=> { %>
+                        <div class="flex">
+                            <div>
+                                <h3 class="text-lg font-semibold">
+                                    <%= element.yorum.konu.title %> 
+                                </h3>
+                                <p style="font-size: 15pt;">
+                                    <%= element.yorum.yorum %>
+                                </p>
+                                <div class="row" style="margin-left: 1vw;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="logo-facebook" class="text-2xl"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="logo-whatsapp" style="padding-left: 9vw;" class="text-2xl"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="logo-twitter" style="padding-left: 9vw;" class="text-2xl"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon style="padding-left: 9vw;" class="text-2xl"
+                                                        name="heart-outline"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon style="padding-left: 9vw;" class="text-2xl" name="chatbubble-ellipses-outline"></ion-icon>
+
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <b>
+                                                    <ion-icon class="text-2xl" style="color:#03A9F4; font-weight:bolder; padding-left: 9vw;" name="checkmark-outline"></ion-icon>
+
+                                                    </b>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center">
+                                                    <ion-icon class="text-2xl" style="padding-left: 9vw;" name="ellipsis-vertical"></ion-icon>
+                                                    <span class="text-sm"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <hr style="margin-top: 4px;">
+
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <div class="lg:w-12/12 space-y-6" v-if="medya == true" style="margin-left: 11px;">
+                    Medya gelecek
+                </div>
+                <!-- <div class="lg:w-5/12 space-y-6">
+                  
+                    <div class="widget">
+                        <h4 class="text-2xl mb-3 font-semibold"> Hakkında </h4>
+                        <ul class="text-gray-600 space-y-4">
+                            <li class="flex items-center space-x-2"> 
+                                <ion-icon name="home-sharp" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                                <strong> İstanbul'da bir yer . .   </strong>
+                            </li>
+                            <li class="flex items-center space-x-2"> 
+                                <ion-icon name="globe" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                                <strong> www.ornek.com  </strong>
+                            </li>
+                            <li class="flex items-center space-x-2"> 
+                                <ion-icon name="logo-instagram" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                                <strong> @ornekkisi  </strong>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <ion-icon name="logo-facebook" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                                <strong> <a href="https://google.com">Abdullah Bektaş</a> </strong>
+                            </li>   
+                            <li class="flex items-center space-x-2">
+                            <ion-icon name="logo-twitter" class=" rounded-full bg-gray-200 text-xl p-1.5 mr-3"></ion-icon>
+                                <strong> <a href="https://google.com">Abdullah Bektaş</a> </strong>
+                            </li>   
+                        </ul></div>
+                    </div> -->
+            </div>
+
+        </div>
+    </div>
+    <style>
+        footer {
+            display: flex;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            color: white;
+            text-align: center;
+            border-top: 1px solid lightgray;
+            border-radius: 20px;
+            padding-top: 10px;
+        }
+    </style>
+    <footer>
+        <% if (user) { %>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/profil"><img src="<%= user.photo %>" style="height: 33px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; border-radius: 20px;">            </a>
+            </div>
+        <% }else{ %>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/users/login"><ion-icon name="person-outline" style="color: gray;" class="text-3xl"></ion-icon></a>
+            </div>
+        <% } %> 
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/medya"><ion-icon name="camera-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+        <% if (user) { %>
+            <% if (user.type == 1 && title == 1) { %>
+                <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                    <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            <% }else{ %>
+                <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                    <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            <% } %> 
+        <% }else{ %>
+    
+        <% } %> 
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/bildirim"><ion-icon name="notifications-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/mesaj"><ion-icon name="chatbubble-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+    </footer>
+    <script>
+        function readURL(input) {
+            console.log(input.files[0])
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    axios.post("/cloudupload",{
+                        resim:e.target.result
+                    }).then(response=>{
+                        if (response.data.status == true) {
+                            document.getElementById("tikla").style.display = "block"
+                            swal("Başarılı","Profil bilgileriniz başarıyla değiştirildi.","success")
+                        } else {
+                            
+                        }
+                    })
+                    $('#blah').attr('src', e.target.result).width(300).height(300);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function kaydet() {
+            axios.post("/probio",{
+                photo:window.a,
+                bio:document.getElementById("bio").value
+            }).then(response=>{
+                if (response.data.status == true) {
+                    swal("Başarılı","Profil bilgileriniz başarıyla değiştirildi.","success")
+                } else {
+                    
+                }
+            })
+        }
+    </script>

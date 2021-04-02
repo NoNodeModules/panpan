@@ -1,0 +1,288 @@
+<% layout("../layout") %>
+    <%- include ../part/headerflex.ejs %>
+
+        <div class="main_content">
+            <div class="mcontainer">
+                <div class="bg-white rounded-2xl -mt-4">
+                    <div class="profiles_content" style="padding-top: 20px; padding-left: 10px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="profile_avatar">
+                                        <div class="profile_avatar_holder">
+                                            <img src="<%= kisi.photo %>"
+                                                style="border-radius: 75px; height: 75px; width: 75px;">
+                                        </div>
+                                        <div class="user_status status_online"></div>
+                                        <div class="icon_change_photo" hidden>
+                                            <ion-icon name="camera" class="text-xl"></ion-icon>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width: 70vw;">
+                                    <h3 @click="mesajEkle('<%= kisi._id %>')" class="text-lg font-semibold" style=" text-align: right;"> <ion-icon
+                                            style="margin-top: -2px;" class="text-2xl" name="chatbubble-outline">
+                                        </ion-icon> | <span style="color: crimson;">KATIL</span>
+                                    </h3>
+                                </td>
+                            </tr>
+                        </table>
+                        <span style="text-transform: capitalize;">
+                            <%= kisi.item.name %>
+                        </span>
+                        <br>
+                        <small>233 Abone</small><br>
+                        <%= kisi.bio %>  <br>
+                        <span style="float: right; text-align: right;"><ion-icon @click="socKapa()" name="caret-down-outline" class="text-2xl"></ion-icon></span>
+                        <br>
+                        <div v-if="social == true">
+                            <i class="fa fa-twitter"></i> : <%= kisi.social.twitter %> <br>
+                            <i class="fa fa-facebook"></i> : <%= kisi.social.facebook %> <br>
+                            <i class="fa fa-linkedin"></i> : <%= kisi.social.linkedin %> 
+                        </div>
+                    </div>
+                    <div class="flex justify-between lg:border-t flex-col-reverse lg:flex-row"
+                        style="padding-top: 10px;">
+                        <nav class="cd-secondary-nav pl-2 is_ligh -mb-0.5 border-transparent">
+                            <ul>
+                                <li @click="baglac()"><a>Raf</a></li>
+                                <li style="padding-left: 14vw;" @click="yorac()"><a>Yorumlar </a></li>
+                                <li style="padding-left: 14vw;" @click="begac()"><a>Beğeniler </a></li>
+                                <li style="padding-left: 14vw;" @click="medac()"><a>Medya</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="lg:flex lg:mt-8 mt-4 lg:space-x-8">
+                        <div class="lg:w-12/12 space-y-6" v-if="baglanti == true">
+                            <ul class="space-y-6">
+                                <% sozluk.forEach(element => { %>
+                                    <li style="margin-top: 4px;">
+                                        <a href="/single/<%= element._id %>">
+                                            <div class="flex items-start pl-3 space-x-4">
+                                                <div class="flex-1">
+                                                    <!-- <h3 class="text-lg font-semibold line-clamp-1"> -->
+                                                    <h3 class="text-lg font-semibold">
+                                                        <%= element.title %>
+                                                    </h3>
+                                                    <p class="text-sm text-gray-400 mb-2"> Yazar: <span data-href="%40tag-dev.html">Abdullah Bektaş</span> |
+                                                        <%= moment(element.createdAt,"ddd MMM DD YYYY HH:mm:ss GMT Z'").fromNow(true) %> önce </span>
+                                                    </p>
+                                                    <div class="row" style="margin-top: -9px; margin-left: 1px;">
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="flex items-center">
+                                                                        <ion-icon name="logo-facebook"></ion-icon>
+                                                                        <span class="text-sm"></span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="flex items-center">
+                                                                        <ion-icon style="padding-left: 16vw;" name="logo-twitter"></ion-icon>
+                                                                        <span class="text-sm"></span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="flex items-center">
+                                                                        <ion-icon style="padding-left: 16vw;" name="logo-whatsapp"></ion-icon>
+                                                                        <span class="text-sm"></span>
+                                                                    </div>
+                                                                </td>
+        
+                                                                <td>
+                                                                    <div class="flex items-center">
+                                                                        <ion-icon style="padding-left: 16vw;" name="chatbubble-ellipses-outline"></ion-icon>
+                                                                        <span class="text-sm"><%= element.comment.length %></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>                                       
+                                            </div>
+                                            </div>
+                                            
+                                        </a>
+                                    </li>
+                                    <hr style="margin-top: -0px;">
+                                    <% }) %>
+                            </ul>
+                        </div>
+                        <div class="lg:w-12/12 space-y-6" v-if="yorumm == true" style="margin-left: 11px;">
+                            <% yorum.forEach(element=> { %>
+                                <div class="flex">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">
+                                            <%= element.konu.title %> 
+                                        </h3>
+                                        <p style="font-size: 15pt;">
+                                            <%= element.yorum %>
+                                        </p>
+                                        <div class="row" style="margin-left: 1vw;">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-facebook" class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-whatsapp" style="padding-left: 9vw;" class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-twitter" style="padding-left: 9vw;" class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon style="padding-left: 9vw;" class="text-2xl"
+                                                                name="heart-outline"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon style="padding-left: 9vw;" class="text-2xl" name="chatbubble-ellipses-outline"></ion-icon>
+
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <b>
+                                                            <ion-icon class="text-2xl" style="color:#03A9F4; font-weight:bolder; padding-left: 9vw;" name="checkmark-outline"></ion-icon>
+
+                                                            </b>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon class="text-2xl" style="padding-left: 9vw;" name="ellipsis-vertical"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <hr style="margin-top: 4px;">
+
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                        <div class="lg:w-12/12 space-y-6" v-if="begenn == true" style="margin-left: 11px;">
+                            <% begen.forEach(element=> { %>
+                                <div class="flex">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">
+                                            <%= element.yorum.konu.title %> 
+                                        </h3>
+                                        <p style="font-size: 15pt;">
+                                            <%= element.yorum.yorum %>
+                                        </p>
+                                        <div class="row" style="margin-left: 1vw;">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-facebook" class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-whatsapp" style="padding-left: 9vw;" class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-twitter" style="padding-left: 9vw;" class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon style="padding-left: 9vw;" class="text-2xl"
+                                                                name="heart-outline"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon style="padding-left: 9vw;" class="text-2xl" name="chatbubble-ellipses-outline"></ion-icon>
+
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <b>
+                                                            <ion-icon class="text-2xl" style="color:#03A9F4; font-weight:bolder; padding-left: 9vw;" name="checkmark-outline"></ion-icon>
+
+                                                            </b>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon class="text-2xl" style="padding-left: 9vw;" name="ellipsis-vertical"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <hr style="margin-top: 4px;">
+
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                        <div class="lg:w-12/12 space-y-6" v-if="medya == true" style="margin-left: 11px;">
+                            Medya gelecek
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <% if (user) { %>
+                <div style="flex: 2; align-items: center; justify-content: center;">
+                    <a href="/profil"><img src="<%= user.photo %>" style="height: 33px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; border-radius: 20px;">            </a>
+                </div>
+            <% }else{ %>
+                <div style="flex: 2; align-items: center; justify-content: center;">
+                    <a href="/users/login"><ion-icon name="person-outline" style="color: gray;" class="text-3xl"></ion-icon></a>
+                </div>
+            <% } %> 
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/medya"><ion-icon name="camera-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+            </div>
+            <% if (user) { %>
+                <% if (user.type == 1 && title == 1) { %>
+                    <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                        <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                    </div>
+                <% }else{ %>
+                    <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                        <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                    </div>
+                <% } %> 
+            <% }else{ %>
+        
+            <% } %> 
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/bildirim"><ion-icon name="notifications-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+            </div>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/mesaj"><ion-icon name="chatbubble-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+            </div>
+        </footer>

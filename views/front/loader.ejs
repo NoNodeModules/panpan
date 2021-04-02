@@ -1,0 +1,36 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    img {
+        display: block;
+        margin-top: 40vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<div class="preloader" style="position: absolute; z-index: 999999999999999;">
+    <div class="text-center" style="width: 100vw; height: 100vh;">
+        <img src="../../newload.png" style="width: 90px; height: 90px;" class="center">
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: "app",
+        data:{
+
+        },
+        methods: {
+            yonlendir() {
+                setTimeout(() => {
+                    window.location = "/"
+                }, 4000);
+            }
+        },
+        created(){
+            
+        }
+
+    })
+</script>

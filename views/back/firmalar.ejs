@@ -1,0 +1,38 @@
+<% layout("layout") %> 
+
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+        </div>
+
+        <h2 class="panel-title">FİRMALAR</h2>
+    </header>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>FİRMA ADI</th>
+                    <th>SEKTÖR</th>
+                    <th>İL - İLCE</th>
+                    <th>TEL - MAİL</th>
+                    <th>EYLEM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% firmalar.forEach(element => { %>
+                    <% if (element.item.type == 1) { %>
+                        <tr>
+                            <td> <%= element.item.magaza %> </td>
+                            <td> <%= element.item.sektor %> </td>
+                            <td> <%= element.item.ililce %> </td>
+                            <td> <%= element.username %> </td>
+                            <td> <%= element._id %> </td>
+                        </tr>
+                    <% } %>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>

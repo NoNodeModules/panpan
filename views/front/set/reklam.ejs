@@ -1,0 +1,140 @@
+<% layout("../layout") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-core/2.11.3/cloudinary-core.min.js" integrity="sha512-JlOhEgkriqAqb9bcQ3ILIQZFjpr7kJHKU9vudBHBulgfc1IgtUtMCK5dX3OyWRFpa1hkz8M4EiuY0ut5vMgAVg==" crossorigin="anonymous"></script>
+<%- include ../part/headerflex.ejs  %>
+    
+<div class="main_content">
+        <div class="mcontainer">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> <a href="#">Reklamsız kullanım</a> <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span>
+            <hr style="margin-top: 22px;">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> <a href="#">Reklam alanı al</a> <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span>
+            <!-- <h2 class="text-2xl font-semibold text-center" style="margin-top: 20px;"> Profil Bilgileri</h2>
+            <div class="profile_avatar_holder image-upload">
+                <label for="file-input">
+
+                <% if (user) { %>
+                    <% if (user.photo == "") { %>
+                        <img id="blah" src="https://via.placeholder.com/100" style="border-radius: 75px; height: 75px; width: 75px; max-height: 75px;
+                        max-width: 75px; object-fit: cover;">
+                        <ion-icon name="camera" class="text-3xl" style="color: white;"></ion-icon>
+                    <% }else{ %>
+                        <img id="blah" src="<%= user.photo %>" style="border-radius: 75px; height: 75px; width: 75px; max-height: 75px;
+                        max-width: 75px; object-fit: cover;">
+                        <ion-icon name="camera" class="text-3xl" style="color: white;"></ion-icon>
+                    <% } %> 
+                <% }else{ %>
+                    <img id="blah" src="https://via.placeholder.com/100" style="border-radius: 100px; height: 75px; width: 75px; max-height: 75px;
+                    max-width: 75px; object-fit: cover;">
+                    <ion-icon name="camera" class="text-3xl" style="color: white; padding-left: 22px; margin-top: -50px; position: absolute;"></ion-icon>
+                    <br>
+                    <textarea id="bio"
+                                    class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none"
+                                    rows="5" rows="10" placeholder="Biyografi giriniz . . . "></textarea>
+                <% } %> 
+                </label>
+            </div>
+            <input id="file-input" type='file' onchange="readURL(this);" style="display: none;"/>
+            <div class="user_status status_online"></div>
+            <div class="icon_change_photo" hidden>
+                <ion-icon name="camera" class="text-xl"></ion-icon>
+            </div>
+            <hr style="margin-top: 22px; border: 2px solid darkgray;">
+
+            <h2 class="text-2xl font-semibold text-center" style="margin-top: 20px;"> Hesap Ayarları</h2>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Kullanıcı Adı</label>
+                <input type="text" class="uk-input" placeholder="@ornek">
+            </span>
+            <hr>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Mail Adresi</label>
+                <input type="text" class="uk-input" placeholder="example@ornek.com">
+            </span>
+            <hr>
+            <span class="badge">
+                <label style="padding-left: 20px; padding-top: 10px;">Telefon</label>
+                <input type="text" class="uk-input" placeholder="- --- -- --">
+            </span>
+            <hr>
+            <hr style="margin-top: 22px; border: 2px solid darkgray;"> -->
+
+        </div>
+    </div>
+    <footer>
+        <% if (user) { %>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/profil"><img src="<%= user.photo %>" style="height: 33px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; border-radius: 20px;">            </a>
+            </div>
+        <% }else{ %>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/users/login"><ion-icon name="person-outline" style="color: gray;" class="text-3xl"></ion-icon></a>
+            </div>
+        <% } %> 
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/medya"><ion-icon name="camera-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+        <% if (user) { %>
+            <% if (user.type == 1 && title == 1) { %>
+                <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                    <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            <% }else{ %>
+                <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                    <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            <% } %> 
+        <% }else{ %>
+    
+        <% } %> 
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/bildirim"><ion-icon name="notifications-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/mesaj"><ion-icon name="chatbubble-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+    </footer>
+
+    <script>
+        function readURL(input) {
+            console.log(input.files[0])
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    axios.post("/cloudupload",{
+                        resim:e.target.result
+                    }).then(response=>{
+                        if (response.data.status == true) {
+                            document.getElementById("tikla").style.display = "block"
+                            swal("Başarılı","Profil bilgileriniz başarıyla değiştirildi.","success")
+                            
+                        } else {
+                            
+                        }
+                    })
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(300)
+                        .height(300);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function kaydet() {
+            axios.post("/probio",{
+                photo:window.a,
+                bio:document.getElementById("bio").value
+            }).then(response=>{
+                if (response.data.status == true) {
+                    swal("Başarılı","Profil bilgileriniz başarıyla değiştirildi.","success")
+                } else {
+                    
+                }
+            })
+        }
+    </script>

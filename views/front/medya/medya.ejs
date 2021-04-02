@@ -1,0 +1,435 @@
+<% layout("../layout") %>
+
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active,
+        .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+    </style>
+    <%- include ../part/headerflex.ejs %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.0.0-rc.1/cropper.min.js"></script>
+
+        <div class="main_content">
+            <div class="mcontainer">
+                <div style="overflow: auto; white-space: nowrap; margin-top: -24px;">
+                    <% etiket.forEach(element=> { %>
+                        <a href="/sozluk/<%= element.tag %>" style="text-transform: lowercase; display: inline-block;
+                        text-align: center;
+                        margin: 5px;
+                        background-color: #E3F2FD;
+                        border: 1px solid #0091EA;
+                        color: #0D47A1;
+                        text-decoration: none;" class="bg-gray-100 py-1.5 px-4 rounded-full">
+                            <b>
+                                <%= element.tag %>
+                            </b>
+                        </a>
+                        <% }) %>
+                </div>
+                <hr>
+
+                <div class="slideshow-container">
+
+                    <!-- Full-width images with number and caption text -->
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 2</div>
+                        <img src="https://www.upc.edu/templates/big-image-example.jpg/@@images/image.jpeg"
+                            style="width:100%; height: 300px; object-fit: cover;">
+                        <div
+                            style="display: flex; flex-direction: row; width: 100%; padding-top: 10px; margin-left: 2vw; position: absolute; margin-top: -14vh;">
+                            <div style="flex:3">
+                                <a href="#">
+                                    <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg"
+                                        style="border-radius: 75px; height: 75px; width: 75px;"></a>
+
+                            </div>
+                            <div style="flex:11; margin-top: 10px;">
+                                <span style="margin-top: 20px; color:white"><b>Abdullah Bektaş</b></span><br>
+                                <span style="margin-top: 20px; color:white"><small>Kişi hakkında bio</small></span>
+                            </div>
+                            <div style="flex:4">
+                                <h3 class="text-md font-semibold">
+                                    <span style="
+                            text-transform: lowercase; 
+                            display: inline-block;
+                            text-align: center;
+                            border-radius: 100px;
+                            padding: 5px;
+                            padding-right: -20px;
+                            text-transform: capitalize;
+                            background-color: #FFCDD2;
+                            border: 1px solid #C62828;
+                            color: #B71C1C;
+                            text-decoration: none;">KATIL</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">2 / 2</div>
+                        <img src="https://productimages.hepsiburada.net/s/5/550/9694870569010.jpg/format:webp"
+                            style="width:100%; height: 300px; object-fit: cover;">
+                        <div
+                            style="display: flex; flex-direction: row; width: 100%; padding-top: 10px; margin-left: 2vw; position: absolute; margin-top: -14vh;">
+                            <div style="flex:3">
+                                <a href="#">
+                                    <img src="https://pbs.twimg.com/profile_images/1333444765799550976/z_Ai2_Io_400x400.jpg"
+                                        style="border-radius: 75px; height: 75px; width: 75px;"></a>
+
+                            </div>
+                            <div style="flex:11; margin-top: 10px;">
+                                <span style="margin-top: 20px; color: white; text-shadow:1px 1px 2px black"><b>Abdullah
+                                        Bektaş</b></span><br>
+                                <span style="margin-top: 20px; color: white; text-shadow:1px 1px 2px black"><b>kullanışlı akıllı saat 19.99 ₺</b></span><br>
+                                <span
+                                    style="margin-top: 20px; border: 1 px solid orange; border-radius: 7px; background-color: orange; color: black; padding:1px"><small>Reklam</small></span>
+                            </div>
+                            <div style="flex:4">
+                                <a>
+                                    <span style="
+                            display: inline-block;
+                            text-transform: lowercase;
+                            text-align: center;
+                            border-radius: 100px;
+                            padding: 5px;
+                            margin-left: -23px;
+                            text-transform: capitalize;
+                            background-color: #E3F2FD;
+                            border: 1px solid #0D47A1;
+                            color: #0091EA;
+                            text-decoration: none;">
+                                        <b>satın al</b>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a style="float: right; text-align: right;" class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+
+                <br>
+
+                <!-- The dots/circles -->
+                <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+                <div style="margin-top: 20px;">
+                    <% medya.forEach(element=> { %>
+                        <div style="display: flex; flex-direction: row;">
+                            <div style="flex: 10;">
+                                <h3 class="text-xl font-semibold"
+                                    style="text-transform: capitalize; line-height: 20px;">
+                                    <a href="/medyaic/<%= element._id %>">
+                                        <%= element.title %>
+                                    </a>
+                                </h3>
+                                <table style="margin-top: 14px;">
+                                    <tr>
+                                        <td><a href="#">
+                                                <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg"
+                                                    style="border-radius: 75px; height: 45px; width: 45px;"></a></td>
+                                        <td>
+                                            <span style="margin-top: 20px;"><b>Abdullah Bektaş</b></span><br>
+                                            <span style="margin-top: 20px;"><small><b>15 Saat Önce</b></small></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="flex: 4; height: 130px; width: 130px; max-height: 100px; max-width: 100px; margin-bottom: 35px;"
+                                class="relative overflow-hidden shadow uk-transition-toggle">
+                                <img src="<%= element.kapak %>" style="object-fit: cover;">
+                            </div>
+                        </div>
+                        <% }) %>
+
+                            <div>
+                                <table>
+                                    <tr>
+                                        <td style="width: 80vw;">
+                                            <b>Reklam metni</b>
+                                            <br>
+                                            <small>X Company</small>
+                                        </td>
+                                        <td style="width: 20vw;">
+                                            <img src="https://via.placeholder.com/200" alt="">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="width: 100%; background-color:#0091EA; padding:10px">
+                                    <p style="color: white;"><b>LİNKE GİT</b></p>
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <a onaclick="medyaKaydet()" style="color: white;" hidden
+                class="bg-blue-600 flex h-9 items-center justify-center rounded-lg text-white px-12 font-semibold">
+                Paylaş </a>
+            <div id="create-post-modal" class="create-post" uk-modal>
+                <div
+                    class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
+
+                    <div class="text-center py-4 border-b" v-if="yyy == null">
+                        <h3 class="text-lg font-semibold"> Medya ekleme yapıyorsunuz. </h3>
+                        <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 m-1 right-2" type="button"
+                            uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
+                    </div>
+                    <!-- <div class="text-center py-4 border-b" style="background-color: #03A9F4">
+                    <h3 class="text-lg font-semibold" style="color: white;"> Medya başarıyla eklendi. </h3>
+                    <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 m-1 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
+                </div> -->
+                    <div class="flex flex-1 items-start space-x-4 p-5">
+                        <!-- <img src="../../../front/images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-11 h-11"> -->
+                        <div class="flex-1 pt-1" style="border-radius: 20px;">
+                            <input type="file" onchange="readURL(this);"
+                                class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none js-photo-upload"
+                                placeholder="Başlık">
+                            <hr>
+                            <input id="title"
+                                class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none"
+                                placeholder="Başlık">
+                            <hr>
+                            <textarea id="aciklama"
+                                class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none"
+                                rows="14" placeholder="Açıklama"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="bsolute bottom-0 p-4 space-x-4 w-full">
+                        <!-- <ion-icon name="link-outline" class="text-3xl" style="padding-left: 10px;"></ion-icon>
+                    <ion-icon name="book-outline" class="text-3xl" style="padding-left: 10px;"></ion-icon> -->
+                    </div>
+                    <div class="flex items-center w-full justify-between p-3 border-t" style="padding-left: 70vw;">
+                        <div class="flex space-x-2">
+                            <a onclick="medyaKaydet()" style="color: white;"
+                                class="bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
+                                Paylaş </a>
+                            <img onclick="medyaKaydet()" style="height: 30px;" src="../../paylas.png" class="">
+                        </div>
+                        <a @click="medyaKaydet()" style="color: white;" hidden
+                            class="bg-blue-600 flex h-9 items-center justify-center rounded-lg text-white px-12 font-semibold">
+                            Paylaş </a>
+                        <img @click="medyaKaydet()" hidden style="height: 30px;" src="../../paylas.png" class="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <% if (user) { %>
+                <div style="flex: 2; align-items: center; justify-content: center;">
+                    <a href="/profil"><img src="<%= user.photo %>"
+                            style="height: 33px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; border-radius: 20px;">
+                    </a>
+                </div>
+                <% }else{ %>
+                    <div style="flex: 2; align-items: center; justify-content: center;">
+                        <a href="/users/login">
+                            <ion-icon name="person-outline" style="color: gray;" class="text-3xl"></ion-icon>
+                        </a>
+                    </div>
+                    <% } %>
+                        <div style="flex: 2; align-items: center; justify-content: center;">
+                            <a href="/medya">
+                                <ion-icon name="camera-outline" style="color: gray;" class="text-4xl"></ion-icon>
+                            </a>
+                        </div>
+                        <% if (user) { %>
+                            <% if (user.type==1 && title==1) { %>
+                                <div style="flex: 2; align-items: center; justify-content: center;"
+                                    uk-toggle="target: #create-post-modal">
+                                    <img src="../../../paylas.png"
+                                        style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                                </div>
+                                <% }else{ %>
+                                    <div style="flex: 2; align-items: center; justify-content: center;"
+                                        uk-toggle="target: #create-post-modal">
+                                        <img src="../../../paylas.png"
+                                            style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                                    </div>
+                                    <% } %>
+                                        <% }else{ %>
+
+                                            <% } %>
+                                                <div style="flex: 2; align-items: center; justify-content: center;">
+                                                    <a href="/bildirim">
+                                                        <ion-icon name="notifications-outline" style="color: gray;"
+                                                            class="text-4xl"></ion-icon>
+                                                    </a>
+                                                </div>
+                                                <div style="flex: 2; align-items: center; justify-content: center;">
+                                                    <a href="/mesaj">
+                                                        <ion-icon name="chatbubble-outline" style="color: gray;"
+                                                            class="text-4xl"></ion-icon>
+                                                    </a>
+                                                </div>
+        </footer>
+
+        <script>
+            window.a = ""
+            function readURL(input) {
+                console.log(input.files[0])
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        axios.post("/cloudupload", {
+                            resim: e.target.result
+                        }).then(response => {
+                            if (response.data.status == true) {
+                                window.a = response.data.resim.secure_url
+                            } else {
+
+                            }
+                        })
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            function medyaKaydet() {
+                axios.post("/medyaekle", {
+                    kapak: window.a,
+                    title: document.getElementById("title").value,
+                    aciklama: document.getElementById("aciklama").value,
+                }).then(response => {
+                    alert(response)
+                })
+            }
+        </script>
+
+        <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+        </script>
+        

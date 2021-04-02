@@ -1,0 +1,38 @@
+<% layout("layout") %> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+        </div>
+
+        <h2 class="panel-title">ÜYELER</h2>
+    </header>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>AD SOYAD</th>
+                    <th>DOĞUM TARİHİ</th>
+                    <th>MAİL</th>
+                    <th>CİNSİYET</th>
+                    <th style="text-align: right;">EYLEM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% uyeler.forEach(element => { %>
+                    <% if (element.type == 2) { %>
+                        <tr>
+                            <td><%= element.item.name %> <%= element.item.surname %> </td>
+                            <td><%= element.item.dt %></td>
+                            <td><%= element.username %> </td>
+                            <td><%= element.item.cinsiyet %></td>
+                            <td> <a href="/admin/uye/yazarata/<%= element._id %>" class="btn btn-success btn-xs pull-right"> <i class="fas fa-file-alt"></i> YAZAR ATA</a> </td>
+                        </tr>
+                    <% } %>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>

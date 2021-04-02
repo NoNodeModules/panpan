@@ -1,0 +1,48 @@
+<% layout("../layout") %>
+    <%- include ../part/headerflex.ejs %>
+
+        <div class="main_content">
+            <div class="mcontainer">
+                    <% mesaj.forEach(element=> { %>
+                        <% if (user._id.toString() == element.user1._id.toString()) { %>
+                            1
+                            <a href="/mesajic">
+                                <span class="badge">
+                                    <table>
+                                        <tr>
+                                            <td style="width: 60px;"> <img src="<%= element.user2.photo%>"
+                                                    style="height: 50px; border-radius: 100px;"> </td>
+                                            <td>
+                                                <h3 class="text-2xl font-semibold"> <a href="/mesajic/<%= element._id %>"><%=
+                                                            element.user2.item.name %></a>
+                                                </h3>
+                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <hr style="margin-top: 10px;">
+                                </span>
+                            </a>
+                        <% }else{ %>
+                            2
+                            <a href="/mesajic">
+                                <span class="badge">
+                                    <table>
+                                        <tr>
+                                            <td style="width: 60px;"> <img src="<%= element.user1.photo %>"
+                                                    style="height: 50px; border-radius: 100px;"> </td>
+                                            <td>
+                                                <h3 class="text-2xl font-semibold"> <a href="/mesajic/<%= element._id %>"> <%=
+                                                            element.user1.item.name %></a>
+                                                </h3>
+                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <hr style="margin-top: 10px;">
+                                </span>
+                            </a>
+                        <% } %> 
+                    <% }) %>
+            </div>
+        </div>

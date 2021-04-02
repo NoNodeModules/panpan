@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="colorlib.com">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Panipal Kayıt</title>
+    <link rel="stylesheet" href="../../../login/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../../../login/css/style.css">
+</head>
+<body>
+    <div class="main" style="height: 50vh;">
+        <div class="container">
+            <h2>Giriş Yap</h2>
+            <form method="POST" id="signup-form" action="/users/register" class="signup-form"
+                enctype="multipart/form-data">
+                <h3>
+                    Giriş Bilgileri
+                </h3>
+                <fieldset>
+                    <div class="form-row">
+                        <div class="form-group-flex">
+                            <div class="form-group">
+                                <input type="text" name="name" id="first_name" placeholder="Mail Adresiniz" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="surname" id="last_name" placeholder="Şifreniz" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="../../../login/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../login/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../../../login/vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="../../../login/vendor/jquery-steps/jquery.steps.min.js"></script>
+    <script src="../../../login/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+</body>
+
+</html>

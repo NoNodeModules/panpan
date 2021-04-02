@@ -1,0 +1,36 @@
+<% layout("layout") %> 
+
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+        </div>
+
+        <h2 class="panel-title">ÜRÜNLER</h2>
+    </header>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>ÜRÜN ADI</th>
+                    <th>AÇIKLAMASI</th>
+                    <th>FİYATI</th>
+                    <th>MAĞAZA</th>
+                    <th>EYLEM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% urun.forEach(element => { %>
+                    <tr>
+                        <td> <%= element.item.baslik %> </td>
+                        <td> <%= element.item.aciklama %> </td>
+                        <td> <%= element.item.fiyat %> </td>
+                        <td> <%= element.user.item.magaza%> </td>
+                        <td> <%= element._id %> </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>

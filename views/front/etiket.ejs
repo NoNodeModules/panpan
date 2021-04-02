@@ -1,0 +1,210 @@
+<% layout("layout") %>
+    <style>
+        @media screen and (max-width: 600px) {
+            #icon {
+                margin-left: 18vw;
+            }
+        }
+        
+        @media screen and (min-width:600px) and (max-width:2400px) {
+            #icon {
+                margin-left: 17vw;
+            }
+        }
+    </style>
+    <%- include ./part/header2.ejs %> 
+
+    <div class="main_content" id="app">
+        <div class="container">
+            <div class="lg:flex lg:space-y-10">
+                <div class="lg:w-3/4 lg:px-20 space-y-12">
+                    <!-- <div class="bg-white shadow border border-gray-100 rounded-lg dark:bg-gray-900 lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
+                        <div class="flex space-x-3">
+                            <img src="../../../front/images/avatars/avatar-2.jpg" class="w-10 h-10 rounded-full">
+                            <input placeholder="Lütfen eklemek istediğiniz içeriği giriniz." v-model="title" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full">
+                        </div>
+                    </div> -->
+                    <div style="overflow: auto; white-space: nowrap; margin-top: -24px;">
+                        <% etiket.forEach(element => { %>
+                            <a href="/sozluk/<%= element.tag %>" style="text-transform: lowercase; display: inline-block;
+                                text-align: center;
+                                margin: 5px;
+                                background-color: #E3F2FD;
+                                border: 1px solid #0091EA;
+                                color: #0D47A1;
+                                text-decoration: none;" class="bg-gray-100 py-1.5 px-4 rounded-full">
+                                <b><%= element.tag %></b>
+                            </a>
+                        <% }) %>
+                    </div>
+                    <hr>
+                    <div class="flex justify-between relative md:mb-4 mb-3" style="margin-top: 4px;">
+                        <div class="flex-1">
+                            <p class="text-center" style="font-family: 'Shadows Into Light', cursive !important; font-size: 20pt !important; color: steelblue; text-transform: lowercase;"> <b><%= konu %></b> </p>
+                            <!-- <nav class="cd-secondary-nav border-b md:m-0 -mx-4">
+                            <ul>
+                                <li class="active"><a href="#" class="lg:px-2"> Popular </a></li>
+                                <li><a href="#" class="lg:px-2"> Featured </a></li>
+                                <li><a href="#" class="lg:px-2"> Recent </a></li>
+                                <li><a href="#" class="lg:px-2"> Unanswered </a></li>
+                            </ul>
+                        </nav> -->
+                        </div>
+
+                    </div>
+                    <hr style="background-color: steelblue; height: 1px; border: 0; margin-bottom: 10px;">
+                    <ul class="space-y-6">
+                        <% sozluk.forEach(element => { %>
+                            <li style="margin-top: 4px;">
+                                <a href="/single/<%= element._id %>">
+                                    <div class="flex items-start pl-3 space-x-4">
+                                        <img src="../../../front/images/avatars/avatar-2.jpg" style="width: 40px; height: 40px;" class="rounded-full">
+                                        <div class="flex-1">
+                                            <!-- <h3 class="text-lg font-semibold line-clamp-1"> -->
+                                            <h3 class="text-lg font-semibold">
+                                                <%= element.title %>
+                                            </h3>
+                                            <p class="text-sm text-gray-400 mb-2"> Yazar: <span data-href="%40tag-dev.html">Abdullah Bektaş</span> |
+                                                <%= moment(element.createdAt,"ddd MMM DD YYYY HH:mm:ss GMT Z'").fromNow(true) %> önce </span>
+                                            </p>
+                                            <div class="row" style="margin-top: -9px; margin-left: 1px;">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="flex items-center">
+                                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                                <span class="text-sm">22</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="flex items-center">
+                                                                <ion-icon style="padding-left: 17vw;" name="heart-outline"></ion-icon>
+                                                                <span class="text-sm">22</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="flex items-center">
+                                                                <ion-icon style="padding-left: 17vw;" name="chatbubble-ellipses-outline"></ion-icon>
+                                                                <span class="text-sm"><%= element.comment.length %>11 </span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                        </div>                                        
+                                    </div>
+                                    </div>
+                                    
+                                </a>
+                            </li>
+                            <hr style="margin-top: -0px;">
+                            <% }) %>
+                    </ul>
+                </div>
+                <div id="son" class="lg:w-1/4 w-full flex-shrink-0">
+
+                    <div uk-sticky="offset:100" class="uk-sticky">
+
+                        <h2 class="text-2xl font-semibold mb-3"> Son Eklenen Konular </h2>
+                        <ul>
+                            <% sozluk.forEach(element => { %>
+                                <li>
+                                    <a href="/single/<%= element._id %>" class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
+                                        <h3 class="font-medium line-clamp-2">
+                                            <%= element.title %>
+                                        </h3>
+                                        <div class="flex items-center my-auto text-xs space-x-1.5">
+                                            <div>
+                                                <%= moment(element.createdAt,"ddd MMM DD YYYY HH:mm:ss GMT Z'").fromNow(true) %> önce</div>
+                                            <div class="pb-1"> . </div>
+                                            <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                                            <div>
+                                                <%= element.comment.length %>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <br>
+
+                        <h4 class="text-xl font-semibold mb-3"> Etiketler </h4>
+
+                        <div class="flex flex-wrap gap-2">
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> 🔵🟠 GÜNDEM</a>
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> 🎞🍿 FİLM</a>
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> 🛍 ALIŞVERİŞ</a>
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> ⚽️🏀🏐 SPOR</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="create-post-modal" class="create-post" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
+
+                <div class="text-center py-4 border-b">
+                    <h3 class="text-lg font-semibold"> Sözlüğe konu ekliyorsunuz </h3>
+                    <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 m-1 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
+                </div>
+                <div class="flex flex-1 items-start space-x-4 p-5">
+                    <img src="../../../front/images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-11 h-11">
+                    <div class="flex-1 pt-2">
+                        <textarea v-model="title" class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="Eklemek istediğiniz içeriği giriniz."></textarea>
+                    </div>
+
+                </div>
+                <div class="bsolute bottom-0 p-4 space-x-4 w-full">
+
+                </div>
+                <div class="flex items-center w-full justify-between p-3 border-t">
+
+                    <select class="selectpicker mt-2 col-4 story">
+                        <% etiket.forEach(element => { %>
+                            <option> <%= element.tag %> </option>
+                            <% }) %>
+                    </select>
+
+                    <div class="flex space-x-2">
+                        <a @click="konuEkle()" style="color: white;" class="bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
+                          Paylaş </a>
+                    </div>
+
+                    <a @click="konuEkle()" style="color: white;" hidden class="bg-blue-600 flex h-9 items-center justify-center rounded-lg text-white px-12 font-semibold">
+                        Paylaş </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                title: "",
+                tag: "",
+                konu: false
+            },
+            methods: {
+                acKapa() {
+                    if (this.konu == false) {
+                        this.konu = true
+                    } else {
+                        this.konu = false
+                    }
+                },
+                konuEkle() {
+                    axios.post("/sozluk/konuekle", {
+                        title: this.title,
+                        tag: this.tag
+                    }).then(response => {
+                        if (response.data.status == true) {
+                            setInterval(() => {
+                                window.location.reload()
+                            }, 1000);
+                        }
+                    })
+                }
+            }
+        })
+    </script>

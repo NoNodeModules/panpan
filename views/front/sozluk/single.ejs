@@ -1,0 +1,294 @@
+
+
+<% layout("../layout") %>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" />
+        <style>
+            textarea {
+                box-sizing: border-box;
+                resize: none;
+            }
+        </style>
+    <header
+        style="display: flex; height: 50px; padding-left: 2vw; padding-top: 10px; border-radius: 20px;">
+        <div style="flex: 1;">
+            <a href="/">
+                <ion-icon name="chevron-back-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon>
+            </a>
+        </div>
+        <div style="flex: 15;">
+            <h3 style="margin-top: 0px;" class="text-lg font-semibold">
+                <%= konu.title.substring(0,40) %>
+                <ion-icon class="text-2xl" style="text-align: right; float: right; margin-top: 0px;"name="share-outline"></ion-icon>
+            </h3>
+            <!-- <h2 class="text-2xl font-semibold" style="margin-top: 0px;"> <%= konu.title.substring(0,40) %> <a> </h2> -->
+        </div>
+        <div style="flex: 2;">
+            
+        </div>
+    </header>
+    <div class="main_content">
+        <div class="container">
+            <div class="lg:flex lg:space-y-10">
+                <div class="lg:w-3/4 lg:px-20 space-y-12">
+                    <div class="flex flex-1 items-center space-x-4" style="z-index: 99999; background-color: white;">
+                        <!-- <a href="#">
+                            <img src="../../../front/images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-10 h-10">
+                        </a> -->
+                        <div class="flex-1 font-semibold capitalize">
+                            <!-- <h3 class="text-lg font-semibold">
+                                <%= konu.title %>
+                                
+                            </h3> -->
+                            <!-- <p class="text-sm text-gray-400 mb-2"> Yazar: <span data-href="%40tag-dev.html">Abdullah Bektaş</span> |
+                                <%= moment(konu.createdAt,"ddd MMM DD YYYY HH:mm:ss GMT Z'").fromNow(true) %> önce </span>
+                            </p> -->
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <div class=" py-4 space-y-4 dark:border-" style="width: 100%;">
+                            <% yorum.forEach(element=> { %>
+                                <div style="display: flex; flex-direction: row; width: 100%;">
+                                    <div style="flex:2">
+                                        <a href="/profil/<%= element.user._id %>"><img src="<%= element.user.photo %>"
+                                                style="border-radius: 75px; height: 45px; width: 45px; margin-left: -8px;"></a>
+                                                
+                                    </div>
+                                    <div style="flex:12; margin-left: -8px;">
+                                        <span style="margin-top: 20px;"><b><%= element.isim %></b></span><br>
+                                        <span style="margin-top: 20px;"><b><small><%= moment(element.createdAt,"ddd MMM DD YYYY HH:mm:ss GMT Z'").fromNow(true) %> önce</small></b></span>
+                                    </div>
+                                    <div style="flex:4">
+                                        
+                                        <h3 class="text-md font-semibold">
+                                        <span style="
+                                            text-transform: lowercase; 
+                                            display: inline-block;
+                                            text-align: center;
+                                            border-radius: 100px;
+                                            padding: 5px;
+                                            text-transform: capitalize;
+                                            background-color: #FFCDD2;
+                                            border: 1px solid #C62828;
+                                            color: #B71C1C;
+                                            text-decoration: none;">KATIL</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div style="width: 100%;">
+                                        <br>
+                                        <p class="leading-6" id="on<%= element._id %>"
+                                            style="font-size: 15pt; margin-left: -1vw; margin-right: -3vw;">
+                                            <%= element.yorum.substring(0,150) %> <small><a
+                                                        onclick="seeMore('<%=element._id%>')">Devamını gör</a></small>
+                                        </p>
+                                        <p class="leading-6" id="off<%= element._id %>"
+                                            style="font-size: 15pt; margin-left: -3vw; margin-right: -3vw; display: none;">
+                                            <%= element.yorum %> <small> <a onclick="geriAl('<%=element._id%>')">Geri
+                                                        al</a> </small>
+                                        </p>
+                                         <div class="row" style="margin-left: -8px; margin-top: 7px;">
+                                            <table>
+                                                <tr>
+                                                    <!-- <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-facebook" class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-whatsapp" style="padding-left: 9vw;"
+                                                                class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <ion-icon name="logo-twitter" style="padding-left: 9vw;"
+                                                                class="text-2xl"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                        </div>
+                                                    </td> -->
+                                                    <td id="<%= element._id %>asd" onclick="changeColor('<%= element._id %>')">
+                                                        <div class="flex items-center"
+                                                            @click="sayi++">
+                                                            <ion-icon id="<%= element._id %>"
+                                                                class="text-2xl"  name="heart"></ion-icon>
+                                                            <span class="text-md"> {{sayi}} </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <a href="/yorumic">
+                                                                <ion-icon style="padding-left: 23vw;" class="text-2xl"
+                                                                name="chatbubble-ellipses-outline"></ion-icon>
+
+                                                            <span class="text-sm"></span></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                           <a href="/kaynak">
+                                                            <b>
+                                                                <ion-icon class="text-2xl"
+                                                                    style="color:#03A9F4; font-weight:bolder; padding-left: 23vw;"
+                                                                    name="checkmark-outline"></ion-icon>
+
+                                                            </b>
+                                                            <span class="text-sm"></span>
+                                                        </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <a class="is_avatar">
+                                                                <ion-icon class="text-2xl " style="padding-left: 23vw;"
+                                                                name="share-outline"></ion-icon>
+                                                            <span class="text-sm"></span>
+                                                            </a>
+
+                                                            <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
+
+                                                                <a href="timeline.html" class="user">
+                                                                    <div class="user_name" style="display: flex; flex-direction: row;">
+                                                                        <div style="flex:2; margin-left: 12vw;">
+                                                                            <ion-icon name="logo-twitter" class="text-3xl"></ion-icon>
+                                                                        </div>
+                                                                        <div style="flex:2;">
+                                                                            <ion-icon name="logo-facebook" class="text-3xl"></ion-icon>
+                                                                        </div>
+                                                                        <div style="flex:2;">
+                                                                            <ion-icon name="logo-whatsapp" class="text-3xl"></ion-icon>
+                                                                        </div>
+                                                                        <div style="flex:2;">
+                                                                            <ion-icon name="clipboard-outline" class="text-3xl"></ion-icon>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                                <hr class="border-gray-100">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <hr style="margin-top: 4px;">
+
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        
+<footer>
+    <table>
+        <tr>
+            <td style="width: 85vw;">
+                <div style="margin-left: 1vw;">
+                    <p style="color: black !important; max-width: 85vw;"> {{yorum}} </p>
+                    <input type="text" placeholder="Yorumunuz" v-model="yorum" style="border: 1px solid lightgray; border-radius: 30px; margin-bottom: 8px; margin-left: 3px;">
+                </div>
+            </td>
+            <td style="width: 15vw;">
+                <div>
+                    <img src="../../../paylas.png" @click="ekle()" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            </td>
+        </tr>
+    </table>
+</footer>
+        <!-- <div id="create-post-modal" class="create-post" uk-modal>
+            <div
+                class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
+
+                <div class="text-center py-4 border-b" v-if="yyy == null">
+                    <h3 class="text-lg font-semibold"> Konuya yorum ekliyorsunuz </h3>
+                    <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 m-1 right-2" type="button"
+                        uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
+                </div>
+                <div class="text-center py-4 border-b" style="background-color: #03A9F4" v-if="yyy == true">
+                    <h3 class="text-lg font-semibold" style="color: white;"> Yorumunuz başarıyla eklendi. </h3>
+                </div>
+                <div class="flex flex-1 items-start space-x-4 p-5">
+                    <img src="../../../front/images/avatars/avatar-2.jpg"
+                        class="bg-gray-200 border border-white rounded-full w-11 h-11">
+                    <div class="flex-1 pt-2">
+                        <input type="hidden" id="sid" value="<%= konu._id %>">
+                    <input type="text" id="input" class="form-control" placeholder="İsim">
+
+                        <textarea v-model="yorum"
+                            class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none"
+                            rows="5" placeholder="Eklemek istediğiniz içeriği giriniz."></textarea>
+                    </div>
+                </div>
+                <div class="bsolute bottom-0 p-4 space-x-4 w-full">
+                </div>
+                <div class="flex items-center w-full justify-between p-3 border-t">
+
+                    <div class="flex space-x-2">
+                        <button @click="ekle()" style="color: white;"
+                            class="uk-close bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
+                            Paylaş </button>
+                    </div>
+
+                    <button @click="ekle()" style="color: white;" hidden
+                        class="uk-close bg-blue-600 flex h-9 items-center justify-center rounded-lg text-white px-12 font-semibold">
+                        Paylaş </button>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <script>
+        jQuery.each(jQuery('textarea[data-autoresize]'), function () {
+            var offset = this.offsetHeight - this.clientHeight;
+
+            var resizeTextarea = function (el) {
+                jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+            };
+            jQuery(this).on('keyup input', function () { resizeTextarea(this); }).removeAttr('data-autoresize');
+        });
+    </script>
+
+    <script>
+        function seeMore(id) {
+            document.getElementById("on"+id).style.display = "none"
+            document.getElementById("off" + id).style.display = "block"
+        }
+
+        function geriAl(id) {
+            document.getElementById("on"+id).style.display = "block"
+            document.getElementById("off" + id).style.display = "none"
+        }
+
+        function changeColor(id) {
+            axios.post("/bildirimekle",{
+                type:0,
+                user:id,
+            })
+            document.getElementById(id).style.color = "#e5383b";
+            return false;
+        } 
+
+    </script>

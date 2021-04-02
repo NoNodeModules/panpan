@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from demo.foxthemes.net/socialitev2.1/feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Feb 2021 19:15:35 GMT -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="../../../front/images/favicon.png" rel="icon" type="image/png">
+    <title>PANİPAL SÖZLÜK</title>
+    <meta charset="utf-8">
+    <meta name="description" content="PANİPAL SÖZLÜK">
+    <link rel="stylesheet" href="../../../front/scss/icons.html">
+    <link rel="stylesheet" href="../../../front/css/uikit.css">
+    <link rel="stylesheet" href="../../../front/css/style.css">
+    <link rel="stylesheet" href="../../../front/css/icons.css">
+    <link rel="stylesheet" href="../../../front/css/tailwind.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <style>
+        #logo {
+            padding-left: 4vw;
+            font-family: 'Francois One', sans-serif;
+        }
+
+        @media screen and (max-width: 600px) {
+            #son {
+                display: none;
+            }
+
+            #logo {
+                padding-left: 22vw;
+                font-family: 'Francois One', sans-serif;
+            }
+        }
+
+        @media screen and (min-width:600px) and (max-width:2400px) {
+            #gizle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="wrapper">
+            <%- body %>
+
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                durum: false,
+                sid: "",
+                yorum: "",
+                konu: false,
+                title: "",
+                tag: "",
+                yyy: null
+            },
+            methods: {
+                acKapa() {
+                    if (durum == false) {
+                        this.durum = true
+                    } else {
+                        this.durum = false
+                    }
+                },
+                ekle() {
+                    axios.post("/sozluk/yorumekle", {
+                        sid: document.getElementById("sid").value,
+                        yorum: this.yorum
+                    }).then(response => {
+                        if (response.data.status == true) {
+                            this.yyy = true
+                            setInterval(() => {
+                                window.location.reload()
+                            }, 1000);
+                        } else {
+
+                        }
+                    })
+                },
+                konuEkle() {
+                    axios.post("/sozluk/konuekle", {
+                        title: this.title,
+                        tag: this.tag
+                    }).then(response => {
+                        if (response.data.status == true) {
+                            setInterval(() => {
+                                window.location.reload()
+                            }, 1000);
+                        }
+                    })
+                }
+
+
+            }
+        })
+    </script>
+
+    <script src="../../../front/js/jquery-3.3.1.min.js"></script>
+    <script src="../../../front/js/uikit.js"></script>
+    <script src="../../../front/js/simplebar.js"></script>
+    <script src="../../../front/js/custom.js"></script>
+    <script src="../../../front/js/bootstrap-select.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+</body>
+
+</html>

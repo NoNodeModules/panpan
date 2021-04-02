@@ -1,0 +1,92 @@
+<% layout("../layout") %>
+<header
+style="display: flex; height: 50px; padding-left: 2vw; padding-right: 7vw; padding-top: 10px; border-radius: 20px;">
+<% if (user) { %>
+    <div style="flex: 1;">
+        <a href="/">
+            <ion-icon name="chevron-back-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon>
+        </a>
+    </div>
+    <% }else{ %>
+        <div style="flex: 2;">
+            <a href="/users/login">
+                <ion-icon name="person-outline" style="color: gray; float: left;" class="text-3xl"></ion-icon>
+            </a>
+        </div>
+        <% } %>
+            <div style="flex: 15;">
+                <h2 class="text-2xl font-semibold" style="margin-top: 0px;"> Bağlantılar<a> </h2>
+            </div>
+            <div style="flex: 2;">
+                
+            </div>
+</header>
+    <div class="main_content">
+        <div class="mcontainer">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> <a href="/hesap">Hesap</a> <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span>
+            <hr style="margin-top: 22px;">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> <a href="/guvenlik">Güvenlik</a> <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span>
+            <hr style="margin-top: 22px;">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> <a href="/baglanti">Bağlantılar</a> <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span>
+            <hr style="margin-top: 22px;">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> <a href="/eris">Erişebilirlik</a> <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span>
+            <!-- <hr style="margin-top: 22px;">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> Reklam Ayarları <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span> -->
+            <hr style="margin-top: 22px;">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> <a href="/ista">İstatistik</a> <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span>
+            <hr style="margin-top: 22px;">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px;"> Koşullar <ion-icon style="float: right;" name="chevron-forward-outline"></ion-icon></h2>
+            </span>
+            <hr style="margin-top: 22px; border: 2px solid darkgray;">
+            <span class="badge">
+                <h2 class="text-2xl font-semibold" style="margin-top: 20px; color: orangered;"> <a href="/users/logout">Çıkış Yap</a> <ion-icon name="log-out-outline" style="float: right; font-size: 22pt;"></ion-icon> </h2>
+            </span>
+            <hr style="margin-top: 22px;">
+        </div>
+    </div>
+    <footer>
+        <% if (user) { %>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/profil"><img src="<%= user.photo %>" style="height: 33px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; border-radius: 20px;">            </a>
+            </div>
+        <% }else{ %>
+            <div style="flex: 2; align-items: center; justify-content: center;">
+                <a href="/users/login"><ion-icon name="person-outline" style="color: gray;" class="text-3xl"></ion-icon></a>
+            </div>
+        <% } %> 
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/medya"><ion-icon name="camera-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+        <% if (user) { %>
+            <% if (user.type == 1 && title == 1) { %>
+                <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                    <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            <% }else{ %>
+                <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                    <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+                </div>
+            <% } %> 
+        <% }else{ %>
+    
+        <% } %> 
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/bildirim"><ion-icon name="notifications-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/mesaj"><ion-icon name="chatbubble-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+        </div>
+    </footer>

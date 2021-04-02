@@ -1,0 +1,30 @@
+<% layout("layout") %> 
+
+<section class="panel col-md-4">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+        </div>
+
+        <h2 class="panel-title">ETİKET EKLE</h2>
+    </header>
+    <div class="panel-body">
+        <form action="/admin/etiket" method="POST">
+            <div class="form-group">
+                <label>ETİKET</label>
+                <input type="text" name="tag" class="form-control" placeholder="Etiket ekle">
+            </div> 
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right">Ekle</button>
+            </div>
+        </form>
+        <div class="clearfix"></div>
+        <br>
+        <ul class="list-group">
+            <% etiket.forEach(element => { %>
+             <li class="list-group-item"><%= element.tag %> <a class="btn btn-danger btn-xs pull-right" href="/admin/etiket/sil/<%= element._id %>"><i class="fa fa-close"></i></a> </li>
+            <% }) %>
+        </ul>
+    </div>
+</section>

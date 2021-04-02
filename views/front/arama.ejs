@@ -1,0 +1,129 @@
+<% layout("layout") %>
+
+
+    <header
+        style="display: flex; height: 60px; padding-left: 7vw; padding-right: 7vw; padding-top: 10px; border-radius: 20px;">
+        <div style="flex: 12;">
+            <input value="" type="text" class="form-control" placeholder="Arama kelimesini giriniz. . ."
+                autocomplete="off">
+        </div>
+        <div style="flex: 2;">
+            <ion-icon name="search-outline" style="color: gray; float: right;" class="text-3xl"
+                uk-toggle="target: #wrapper ; cls: show-searchbox"></ion-icon>
+        </div>
+    </header>
+    <div class="main_content">
+        <div class="container">
+            <nav class="cd-secondary-nav pl-2 is_ligh -mb-0.5 border-transparent"
+                style="display: flex; margin-top: -10px;">
+                <ul>
+                    <li onclick="sozlukAc()"><a>Sözlük</a></li>
+                    <li onclick="medyaAc()" style="padding-left: 20vw;"><a>Medya </a></li>
+                    <li onclick="kisilerAc()" style="padding-left: 20vw;"><a>Kişiler </a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="sozluk" style="padding-left:10px; padding-right: 10px;">
+            <ul class="space-y-6">
+                <div class="flex justify-between relative md:mb-4 mb-3" style="margin-top: -5px;">
+                    <img src="https://i.sozcu.com.tr/wp-content/uploads/2017/02/sozcu-boeing-777-1.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+                    <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/1200px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg" style="height: 20vw; width: 130; object-fit: cover;">
+                    <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+                </div>
+                <div class="flex justify-between relative md:mb-4 mb-3" style="margin-top: -5px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/1200px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg" style="height: 20vw; width: 130; object-fit: cover;">
+                    <img src="https://i.sozcu.com.tr/wp-content/uploads/2017/02/sozcu-boeing-777-1.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+                    <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+                    <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+                </div>
+                <% sozluk.forEach(element=> { %>
+                    <li style="margin-top: 4px;">
+                        <div class="flex items-start pl-3 space-x-4" style="margin-left: -2vw;">
+                            <a href="/single/<%= element._id %>">
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold">
+                                        <%= element.title %>
+                                    </h3>
+                                    <p class="text-sm text-gray-400 mb-2"> Yazar: <span data-href="%40tag-dev.html">
+                                            <%= element.user.item.name %>
+                                        </span> |
+                                        <%= moment(element.createdAt,"ddd MMM DD YYYY HH:mm:ss GMT Z'").fromNow(true) %>
+                                            önce </span> <span style="float: right; text-align: right;" class="text-sm">
+                                                <b> 123 </b> </span>
+                                    </p>
+                            </a>
+                        </div>
+        </div>
+        </li>
+        <hr style="margin-top: -0px;">
+        <% }) %>
+            </ul>
+    </div>
+    <div id="medya" style="display: none; padding-left:10px; padding-right:10px;">
+        <div class="flex justify-between relative md:mb-4 mb-3" style="margin-top: 5px;">
+            <img src="https://i.sozcu.com.tr/wp-content/uploads/2017/02/sozcu-boeing-777-1.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+            <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/1200px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg" style="height: 20vw; width: 130; object-fit: cover;">
+            <img src="https://i.sozcu.com.tr/wp-content/uploads/2016/09/mustafa-kemal-ataturk.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+        </div>
+        <div class="flex justify-between relative md:mb-4 mb-3" style="margin-top: 5px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/1200px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg" style="height: 20vw; width: 130; object-fit: cover;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Bundesarchiv_Bild_183-S33882%2C_Adolf_Hitler_retouched.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+            <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+            <img src="https://www.timeturk.com/resim/detay/80/800090.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+            <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 20vw; width: 130; object-fit: cover;">
+        </div>
+    </div>
+    <div id="kisiler" style="display: none; padding-left:10px;">
+        <table>
+            <tr>
+                <td style="width: 10vw;">
+                    <a href="#"><img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style="border-radius: 75px; height: 45px; width: 45px;"></a>
+                </td>
+                <td style="width: 75vw;">
+                    <span style="margin-top: 20px;"><b>Abdullah Bektaş</b></span><br>
+                    <span style="margin-top: 20px;"><small>Kişi hakkında bio</small></span>
+                </td>
+                <td>
+                    <span style="
+                text-transform: lowercase; 
+                display: inline-block;
+                text-align: center;
+                border-radius: 100px;
+                padding: 5px;
+                text-transform: capitalize;
+                background-color: #FFCDD2;
+                border: 1px solid #C62828;
+                color: #B71C1C;
+                text-decoration: none;">KATIL</span>
+            </h3>
+                </td>
+            </tr>
+            
+        </table>
+    </div>
+    </div>
+
+    <script>
+        function sozlukAc() {
+            document.getElementById("sozluk").style.display = "block"
+            document.getElementById("medya").style.display = "none"
+            document.getElementById("kisiler").style.display = "none"
+        }
+
+        function medyaAc() {
+            document.getElementById("sozluk").style.display = "none"
+            document.getElementById("medya").style.display = "block"
+            document.getElementById("kisiler").style.display = "none"
+        }
+
+        function kisilerAc() {
+            document.getElementById("sozluk").style.display = "none"
+            document.getElementById("medya").style.display = "none"
+            document.getElementById("kisiler").style.display = "block"
+        }
+    </script>
+
+
+    <%- include ./part/footerflex.ejs %>

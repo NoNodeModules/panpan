@@ -1,0 +1,102 @@
+<% layout("layout") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-core/2.11.3/cloudinary-core.min.js" integrity="sha512-JlOhEgkriqAqb9bcQ3ILIQZFjpr7kJHKU9vudBHBulgfc1IgtUtMCK5dX3OyWRFpa1hkz8M4EiuY0ut5vMgAVg==" crossorigin="anonymous"></script>
+    <style>
+        img {
+            max-width: 180px;
+        }
+
+        input[type=file] {
+            padding: 10px;
+            background: #2d2d2d;
+        }
+    </style>
+    <%- include ./part/header2.ejs %> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+    <div class="main_content">
+        <div class="mcontainer">
+            <div class="bg-white rounded-2xl -mt-4">
+                <div class="profiles_content" style="padding-top: 20px; padding-left: 10px;">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="profile_avatar_holder image-upload">
+                                    <label for="file-input">
+
+                                        <img id="blah" src="../../../front/images/avatars/avatar-8.jpg" style="border-radius: 75px; height: 75px; width: 75px; max-height: 75px;
+                                max-width: 75px; object-fit: cover;">
+                                        <ion-icon name="add-circle-outline" class="text-6xl"
+                                            style="position: absolute; margin-top: -65px; margin-left: 8px; color: white;">
+                                        </ion-icon>
+
+                                    </label>
+                                </div>
+                                <input id="file-input" type='file' onchange="readURL(this);" style="display: none;" />
+                            </td>
+                            <td style="width: 50vw;">
+                                <h3 class="text-lg font-semibold" style=" text-align: right;"> <span
+                                        style="color: crimson;">Profil Değiştir</span> </h3>
+                                </h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100%;">
+                                <h3 class="text-lg font-semibold" style="padding-top: 50px;"> <span>Biyografi : </span>
+                                </h3>
+                                <textarea id="bio"
+                                    class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none"
+                                    rows="14" rows="10" placeholder="Biyografi giriniz . . . "></textarea>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="tikla" style="display: none;" onclick="kaydet()">Değiştir</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function readURL(input) {
+            console.log(input.files[0])
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    axios.post("/cloudupload",{
+                        resim:e.target.result
+                    }).then(response=>{
+                        if (response.data.status == true) {
+                            document.getElementById("tikla").style.display = "block"
+                            swal("Başarılı","Profil bilgileriniz başarıyla değiştirildi.","success")
+                            
+                        } else {
+                            
+                        }
+                    })
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(300)
+                        .height(300);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function kaydet() {
+            axios.post("/probio",{
+                photo:window.a,
+                bio:document.getElementById("bio").value
+            }).then(response=>{
+                if (response.data.status == true) {
+                    swal("Başarılı","Profil bilgileriniz başarıyla değiştirildi.","success")
+                } else {
+                    
+                }
+            })
+        }
+    </script>

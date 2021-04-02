@@ -1,0 +1,101 @@
+<div>
+    <br>
+    <div class="flex justify-between relative md:mb-4 mb-3" style="margin-top: -5px;">
+        <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 120px; width: 130; object-fit: cover;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/1200px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg" style=" height: 120px; width: 130; object-fit: cover;">
+        <img src="https://i.sozcu.com.tr/wp-content/uploads/2017/02/sozcu-eboeing-777-1.jpg" style=" height: 120px; width: 130; object-fit: cover;">
+        <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 120px; width: 130; object-fit: cover;">
+    </div>
+    <div class="flex justify-between relative md:mb-4 mb-3" style="margin-top: -5px;">
+        <img src="https://i.sozcu.com.tr/wp-content/uploads/2017/02/sozcu-boeing-777-1.jpg" style=" height: 120px; width: 130; object-fit: cover;">
+        <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 120px; width: 130; object-fit: cover;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/1200px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg" style=" height: 120px; width: 130; object-fit: cover;">
+        <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg" style=" height: 120px; width: 130; object-fit: cover;">
+    </div>
+    <hr style="background-color: steelblue; height: 1px; border: 0; margin-bottom: 10px;">
+    
+    <hr><hr>
+    <div style="display: flex; flex-direction: row; width: 100%; padding-top: 10px; margin-left: 2vw;">
+        <div style="flex:2">
+            <a href="#">
+                <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg"
+                    style="border-radius: 75px; height: 45px; width: 45px;"></a>
+                    
+        </div>
+        <div style="flex:12;">
+            <span style="margin-top: 20px;"><b>Abdullah Bektaş</b></span><br>
+            <span style="margin-top: 20px;"><small>Kişi hakkında bio</small></span>
+        </div>
+        <div style="flex:4">
+            <h3 class="text-md font-semibold">
+            <span style="
+                text-transform: lowercase; 
+                display: inline-block;
+                text-align: center;
+                border-radius: 100px;
+                padding: 5px;
+                text-transform: capitalize;
+                background-color: #FFCDD2;
+                border: 1px solid #C62828;
+                color: #B71C1C;
+                text-decoration: none;">KATIL</span>
+            </h3>
+        </div>
+    </div>
+    <hr style="margin-top: 2px;">
+    <div style="display: flex; flex-direction: row; width: 100%; padding-top: 10px; margin-left: 2vw;">
+        <div style="flex:2">
+            <a href="#">
+                <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg"
+                    style="border-radius: 75px; height: 45px; width: 45px;"></a>
+                    
+        </div>
+        <div style="flex:12;">
+            <span style="margin-top: 20px;"><b>Abdullah Bektaş</b></span><br>
+            <span style="margin-top: 20px;"><small>Kişi hakkında bio</small></span>
+        </div>
+        <div style="flex:4">
+            <h3 class="text-md font-semibold">
+            <span style="
+                text-transform: lowercase; 
+                display: inline-block;
+                text-align: center;
+                border-radius: 100px;
+                padding: 5px;
+                text-transform: capitalize;
+                background-color: #FFCDD2;
+                border: 1px solid #C62828;
+                color: #B71C1C;
+                text-decoration: none;">KATIL</span>
+            </h3>
+        </div>
+    </div>
+    <hr style="margin-top: 2px;">
+    <div style="display: flex; flex-direction: row; width: 100%; padding-top: 10px; margin-left: 2vw;">
+        <div style="flex:2">
+            <a href="#">
+                <img src="https://i.pinimg.com/736x/26/6f/f5/266ff5ae2c8fc6c5a638df9f86b4bb81.jpg"
+                    style="border-radius: 75px; height: 45px; width: 45px;"></a>
+                    
+        </div>
+        <div style="flex:12;">
+            <span style="margin-top: 20px;"><b>Abdullah Bektaş</b></span><br>
+            <span style="margin-top: 20px;"><small>Kişi hakkında bio</small></span>
+        </div>
+        <div style="flex:4">
+            <h3 class="text-md font-semibold">
+            <span style="
+                text-transform: lowercase; 
+                display: inline-block;
+                text-align: center;
+                border-radius: 100px;
+                padding: 5px;
+                text-transform: capitalize;
+                background-color: #FFCDD2;
+                border: 1px solid #C62828;
+                color: #B71C1C;
+                text-decoration: none;">KATIL</span>
+            </h3>
+        </div>
+    <hr style="margin-top: 2px;">
+</div>

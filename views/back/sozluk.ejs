@@ -1,0 +1,61 @@
+<% layout("layout") %> 
+
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+        </div>
+
+        <h2 class="panel-title">SÖZLÜĞE EKLE</h2>
+    </header>
+    <div class="panel-body">
+        <form action="/admin/sozluk" method="POST">
+            <div class="form-group col-md-8">
+                <label>Başlık</label>
+                <input type="text" name="title" class="form-control" placeholder="Sözlük konusu için başlık">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Etiket</label>
+                <select name="tag" class="form-control">
+                    <% etiket.forEach(element => { %>
+                    <option><%= element.tag %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right">Ekle</button>
+            </div>
+        </form>
+    </div>
+</section>
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+        </div>
+
+        <h2 class="panel-title">SÖZLÜK KONULARI</h2>
+    </header>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>BAŞLIK</th>
+                    <th>ETİKET</th>
+                    <th>EYLEM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% sozluk.forEach(element => { %>
+                    <tr>
+                        <td> <%= element.title %> </td>
+                        <td> <%= element.tag %> </td>
+                        <td> <a href="/admin/sozluk/sil/<%= element._id %>" class="btn btn-danger btn-xs pull-right"> <i class="fa fa-close"></i> </a> </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>

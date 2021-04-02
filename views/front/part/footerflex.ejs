@@ -1,0 +1,34 @@
+
+<footer>
+    <% if (user) { %>
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/profil"><img src="<%= user.photo %>" style="height: 33px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; border-radius: 20px;">            </a>
+        </div>
+    <% }else{ %>
+        <div style="flex: 2; align-items: center; justify-content: center;">
+            <a href="/users/login"><ion-icon name="person-outline" style="color: gray;" class="text-3xl"></ion-icon></a>
+        </div>
+    <% } %> 
+    <div style="flex: 2; align-items: center; justify-content: center;">
+        <a href="/medya"><ion-icon name="camera-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+    </div>
+    <% if (user) { %>
+        <% if (user.type == 1 && title == 1) { %>
+            <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+            </div>
+        <% }else{ %>
+            <div style="flex: 2; align-items: center; justify-content: center;" uk-toggle="target: #create-post-modal">
+                <img src="../../../paylas.png" style="height: 40px; top: 0px; bottom: 0px; left: 0px; right: 0px; margin:auto; margin-bottom: 4px;">
+            </div>
+        <% } %> 
+    <% }else{ %>
+
+    <% } %> 
+    <div style="flex: 2; align-items: center; justify-content: center;">
+        <a href="/bildirim"><ion-icon name="notifications-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+    </div>
+    <div style="flex: 2; align-items: center; justify-content: center;">
+        <a href="/mesaj"><ion-icon name="chatbubble-outline" style="color: gray;" class="text-4xl"></ion-icon></a>
+    </div>
+</footer>
